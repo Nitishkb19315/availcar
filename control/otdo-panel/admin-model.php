@@ -20,20 +20,43 @@
 		  	<div class="col-sm-6 col-sm-offset-3">
 				<div class="panel panel-default border-panel card-view">
 					<div class="panel-heading">
-							<h3 class="text-center">Add Gallery Category</h3>
+							<h3 class="text-center">Add Model</h3>
 						<div class="clearfix"></div>
 					</div>
 					<div class="panel-wrapper collapse in">
 						<div class="panel-body">
 							<div class="form-wrap">
-								<form action="gallery-category-exe.php" method="post" enctype="multipart/form-data">
+								<form action="model-exe.php" method="post" enctype="multipart/form-data">
 									<div class="row">
 										<div class="col-sm-12">
 											<div class="form-group">
 												<label class="control-label mb-10 text-left">
 												Category
 												</label>
-												<input type="text" class="form-control" name="category" required="">
+                                                <select class="form-control" required="" name="make" id="car_make">
+                                                    <option value="" disabled selected>Select Make</option>
+                                                    <?php 
+                                                        $result = get_car_make();
+                                                        if(mysqli_num_rows($result)>0){
+                                                            while($row = mysqli_fetch_assoc($result)){
+
+                                                    ?>
+                                                    <option value="<?php echo $row['id']; ?>"><?php echo strtoupper($row['make']); ?></option>
+                                                    <?php 
+                                                            }
+                                                        }
+                                                    ?>
+                                                </select>
+											</div>
+										</div>
+									</div><!-- row -->
+                                    <div class="row">
+										<div class="col-sm-12">
+											<div class="form-group">
+												<label class="control-label mb-10 text-left" for="model">
+												Model
+												</label>
+												<input type="text" class="form-control" id='model' name="model" required="" Placeholder="Model">
 											</div>
 										</div>
 									</div><!-- row -->
@@ -57,7 +80,7 @@
 				<div class="panel panel-default border-panel card-view">
 					<div class="panel-heading">
 						<div class="pull-left">
-							<h6 class="panel-title txt-dark">Gallery Category list</h6>
+							<h6 class="panel-title txt-dark">Model list</h6>
 						</div>
 						<div class="clearfix"></div>
 					</div>
@@ -69,14 +92,15 @@
 										<thead> 
 											<tr>
 												<th>Sr No.</th>
-												<th>Category</th>
+												<th>Make</th>
+                                                <th>Model</th>
 												<th class="text-center">Delete</th>
 											</tr>
 										</thead> 
 									
 										<tbody> 
 										<?php  
-									    $result = ListCate();
+									    $result = get_model_list();
 									    if(mysqli_num_rows($result)>0){
 									  	$sr=1;
 									  	while($row=mysqli_fetch_assoc($result))
@@ -84,8 +108,9 @@
 										?>
 										<tr>
 										  <td><?php echo $sr++ ; ?></td>
-										  <td><?php echo $row['category']; ?></td>
-                      					  <td class="text-center"><a href="delete-gallery-category.php?id=<?php echo $row['id']?>" class="text-red"><i class="zmdi zmdi-delete txt-danger txt-2x"></i></a></td>
+                                          <td><?php echo $row['make']; ?></td>
+										  <td><?php echo $row['model']; ?></td>
+                      					  <td class="text-center"><a href="delete-model.php?id=<?php echo $row['id']?>" class="text-red"><i class="zmdi zmdi-delete txt-danger txt-2x"></i></a></td>
 										</tr> 
 										<?php
 										}

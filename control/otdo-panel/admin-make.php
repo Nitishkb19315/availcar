@@ -7,7 +7,7 @@
 			<div class="col-sm-12">
 				<ol class="breadcrumb">
 					<li><a href="dashboard.php">Dashboard</a></li>
-					<li class="active"><span>Model</span></li>
+					<li class="active"><span>Make</span></li>
 			  	</ol>
 		  </div><!-- co;-sm-12 -->
 		</div><!-- row -->
@@ -20,20 +20,29 @@
 		  	<div class="col-sm-6 col-sm-offset-3">
 				<div class="panel panel-default border-panel card-view">
 					<div class="panel-heading">
-							<h3 class="text-center">Add Gallery Category</h3>
+							<h3 class="text-center">Add Makes</h3>
 						<div class="clearfix"></div>
 					</div>
 					<div class="panel-wrapper collapse in">
 						<div class="panel-body">
 							<div class="form-wrap">
-								<form action="gallery-category-exe.php" method="post" enctype="multipart/form-data">
+								<form action="make-exe.php" method="POST" enctype="multipart/form-data">
+									<div class="row">
+										<div class="col-sm-12">
+											<div class=" form-group input-group">
+						                        <input type="text" class="form-control" placeholder="Select Date" name="dates" id="date" data-select="datepicker" required readonly=""><span class="input-group-btn">
+												<button type="button" class="btn btn-success" data-toggle="datepicker"><i class="fa fa-calendar"></i></button></span>
+						                    </div>
+										</div>
+									</div><!-- row -->
 									<div class="row">
 										<div class="col-sm-12">
 											<div class="form-group">
-												<label class="control-label mb-10 text-left">
-												Category
-												</label>
-												<input type="text" class="form-control" name="category" required="">
+												<input name="make" list="make" class="form-control" required="" placeholder="Enter Make">
+                                                <datalist id="make">
+                                                    <option value="BMW">
+                                                    <option value="Audi">
+                                                </datalist>
 											</div>
 										</div>
 									</div><!-- row -->
@@ -53,11 +62,11 @@
 		</div><!-- row -->
 
 		<div class="row">
-			<div class="col-sm-8 col-sm-offset-2">
+			<div class="col-sm-12">
 				<div class="panel panel-default border-panel card-view">
 					<div class="panel-heading">
 						<div class="pull-left">
-							<h6 class="panel-title txt-dark">Gallery Category list</h6>
+							<h6 class="panel-title txt-dark">Make list</h6> 
 						</div>
 						<div class="clearfix"></div>
 					</div>
@@ -66,17 +75,17 @@
 							<div class="table-wrap">
 								<div class="table-responsive">
 									<table id="datable_1" class="table table-hover display  pb-30" >
-										<thead> 
+										<thead>
 											<tr>
 												<th>Sr No.</th>
-												<th>Category</th>
-												<th class="text-center">Delete</th>
+												<th>Title</th>
+												<th class="text-center">Delete</th> 
 											</tr>
-										</thead> 
+										</thead>
 									
 										<tbody> 
 										<?php  
-									    $result = ListCate();
+									    $result = get_make_list();
 									    if(mysqli_num_rows($result)>0){
 									  	$sr=1;
 									  	while($row=mysqli_fetch_assoc($result))
@@ -84,8 +93,8 @@
 										?>
 										<tr>
 										  <td><?php echo $sr++ ; ?></td>
-										  <td><?php echo $row['category']; ?></td>
-                      					  <td class="text-center"><a href="delete-gallery-category.php?id=<?php echo $row['id']?>" class="text-red"><i class="zmdi zmdi-delete txt-danger txt-2x"></i></a></td>
+										  <td><?php echo $row['make']; ?></td>
+                      					  <td class="text-center"><a href="delete-make.php?id=<?php echo $row['id']?>" class="text-red"><i class="zmdi zmdi-delete txt-danger txt-2x"></i></a></td>
 										</tr> 
 										<?php
 										}

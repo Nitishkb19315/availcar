@@ -12,7 +12,7 @@
                                 <div class="text-center">
                                     <div class="main-slider__price"><span class="main-slider__price_up">$</span>249<span class="main-slider__price_down">/m</span><span class="main-slider__price_info">for 24 months</span></div>
                                 </div>
-                                <div class="text-right"><a class="main-slider__link" href="blog-post.html">learn more</a></div>
+                                <div class="text-right"><a class="main-slider__link" href="blog-post.php">learn more</a></div>
                             </div>
                         </div>
                     </div>
@@ -24,7 +24,7 @@
                                 <div class="main-slider__title">Premium
                                     <br>Cars Dealers
                                 </div>
-                                <div class="text-right"><a class="main-slider__link" href="blog-post.html">learn more</a></div>
+                                <div class="text-right"><a class="main-slider__link" href="blog-post.php">learn more</a></div>
                             </div>
                         </div>
                         <div class="sp-layer" data-width="100%" data-show-transition="left" data-hide-transition="left" data-show-duration="1500" data-show-delay="800" data-hide-delay="400"><img class="main-slider__figure-1 img-fluid" src="assets/media/content/b-main-slider/bg-2_item-1.png" alt="foto" /></div>
@@ -52,7 +52,7 @@
                                                         <div class="b-find__item">
                                                             <div class="b-find__label"><span class="b-find__number">01</span> Select Make</div>
                                                             <div class="b-find__selector">
-                                                                <select class="selectpicker" data-width="100%" data-style="ui-select" id="car_make">
+                                                                <select class="form-select" aria-label="Default select example" id="car_make">
                                                                     <option value="" disabled selected>Select Make</option>
                                                                     <?php 
                                                                         $result = get_car_make();
@@ -70,21 +70,23 @@
                                                         </div>
                                                         <div class="b-find__item">
                                                             <div class="b-find__label"><span class="b-find__number">02</span> Select a Model</div>
-                                                            <div class="b-find__selector">
-                                                                <select class="selectpicker" id="car_model" data-width="100%" data-style="ui-select">
-                                                                    
+                                                            <div class="b-find__selector" >
+                                                                <select class="form-select" id="car_model" aria-label="Default select example">
+                                                                    <option selected>Open this select menu</option>
+                                                                    <option value="1">One</option>
+                                                                    <option value="2">Two</option>
+                                                                    <option value="3">Three</option>
                                                                 </select>
                                                             </div>
                                                         </div>
                                                         <div class="b-find__item">
                                                             <div class="b-find__label"><span class="b-find__number">03</span> Price Range</div>
-                                                            <div class="b-find__selector">
-                                                                <select class="selectpicker" data-width="100%" data-style="ui-select">
-                                                                    <option>Max $5000</option>
-                                                                    <option>Max $15000</option>
-                                                                    <option>Max $25000</option>
-                                                                </select>
-                                                            </div>
+                                                            <select class="form-select" aria-label="Default select example">
+                                                                <option selected>Open this select menu</option>
+                                                                <option value="1">One</option>
+                                                                <option value="2">Two</option>
+                                                                <option value="3">Three</option>
+                                                            </select>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -181,6 +183,13 @@
                                                     </div>
                                                 </div>
                                                 <button class="b-find__btn btn btn-primary">Search</button>
+                                                <div class="row">
+                                                    <div class="col-md-3">
+                                                        
+                                                    </div>
+                                                    <div class="col-md-3"></div>
+                                                    <div class="col-md-3"></div>
+                                                </div>
                                             </div>
                                             <div class="b-find__checkbox-group"><span class="b-find__checkbox-item">
                                                     <input class="forms__check" id="newCars3" type="checkbox" checked="checked" />
@@ -924,7 +933,7 @@
                                     </div>
                                     <div class="entry-main">
                                         <div class="entry-header">
-                                            <div class="entry-meta"><span class="entry-meta__item"><a class="entry-meta__link" href="blog-main.html">25 DEC 2018</a></span><span class="entry-meta__item"><a class="entry-meta__link" href="blog-main.html">BY ADMIN</a></span></div>
+                                            <div class="entry-meta"><span class="entry-meta__item"><a class="entry-meta__link" href="blog-main.php">25 DEC 2018</a></span><span class="entry-meta__item"><a class="entry-meta__link" href="blog-main.php">BY ADMIN</a></span></div>
                                             <h2 class="entry-title"><?php echo $row['title'] ?></h2>
                                         </div>
                                         <div class="entry-content">
@@ -946,7 +955,7 @@
                                     </div>
                                     <div class="entry-main">
                                         <div class="entry-header">
-                                            <div class="entry-meta"><span class="entry-meta__item"><a class="entry-meta__link" href="blog-main.html">25 DEC 2018</a></span><span class="entry-meta__item"><a class="entry-meta__link" href="blog-main.html">BY ADMIN</a></span></div>
+                                            <div class="entry-meta"><span class="entry-meta__item"><a class="entry-meta__link" href="blog-main.php">25 DEC 2018</a></span><span class="entry-meta__item"><a class="entry-meta__link" href="blog-main.php">BY ADMIN</a></span></div>
                                             <h2 class="entry-title">How to increase Auto Sales: A Dealers’ Guide</h2>
                                         </div>
                                         <div class="entry-content">
@@ -963,7 +972,7 @@
                                     </div>
                                     <div class="entry-main">
                                         <div class="entry-header">
-                                            <div class="entry-meta"><span class="entry-meta__item"><a class="entry-meta__link" href="blog-main.html">25 DEC 2018</a></span><span class="entry-meta__item"><a class="entry-meta__link" href="blog-main.html">BY ADMIN</a></span></div>
+                                            <div class="entry-meta"><span class="entry-meta__item"><a class="entry-meta__link" href="blog-main.php">25 DEC 2018</a></span><span class="entry-meta__item"><a class="entry-meta__link" href="blog-main.php">BY ADMIN</a></span></div>
                                             <h2 class="entry-title">We have vehicle with safety checks and licensed</h2>
                                         </div>
                                         <div class="entry-content">

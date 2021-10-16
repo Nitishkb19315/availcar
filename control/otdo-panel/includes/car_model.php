@@ -11,7 +11,7 @@ if(isset($_GET['id'])){
 		while($row = mysqli_fetch_assoc($result))
 		{
 ?>
-	    	<option value="<?php echo $row['id'] ?>"><?php echo $row['model']; ?></option>
+	    	<option value="<?php echo $row['model_id'] ?>"><?php echo $row['model']; ?></option>
 <?php
 		}
 	}else {

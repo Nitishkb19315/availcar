@@ -681,9 +681,121 @@ function get_max_id($table_name){
 		global $con;
 		$query = "SELECT * FROM ";
 		$query .=" `car_model`";
-		$query .=" WHERE `car make`= $id";
+		$query .=" WHERE `make`= $id";
 		$result= mysqli_query($con,$query);
 		confirm_query($result);
 		return $result;
+	}
+	//*************** makes  **********************
+	function addMake($unique_id,$make){
+		global $con;
+		$query = "INSERT INTO ";
+		$query .= " `make` ";
+		$query .= " (`id`,`make`) ";
+		$query .= " VALUES ($unique_id,'$make')";
+		$result = mysqli_query($con,$query);
+		confirm_query($result);
+		return $result;
+	}
+	function get_make_list(){
+		global $con;
+		$query = "SELECT * FROM ";
+		$query .=" `make`";
+		$result= mysqli_query($con,$query);
+		confirm_query($result);
+		return $result;
+	}
+	function deleteMake($id){
+		global $con;
+		$query = "DELETE FROM ";
+		$query .= "make ";
+		$query .= "WHERE ";
+		$query .= "id= {$id} ";
+		$query .= "LIMIT 1";
+		$result = mysqli_query($con,$query);
+		confirm_query($result);
+		if(mysqli_affected_rows($con)>0){
+			return TRUE;
+		}
+		else {
+			return FALSE;
+		}
+	}
+
+	//*************** makes  **********************
+	function addModel($make,$model){
+		global $con;
+		$query = "INSERT INTO ";
+		$query .= " `car_model` ";
+		$query .= " (`make`,`model`) ";
+		$query .= " VALUES ('$make','$model')";
+		$result = mysqli_query($con,$query);
+		confirm_query($result);
+		return $result;
+	}
+	function get_model_list(){
+		global $con;
+		$query = "SELECT ";
+		$query .= "`model_id` AS id,make.make AS make,`model`";
+		$query .="FROM  `make`,`car_model`";
+		$query .= "WHERE car_model.make = make.id";
+		$result= mysqli_query($con,$query);
+		confirm_query($result);
+		return $result;
+	}
+	function addVariant($make,$model,$variant){
+		global $con;
+		$query = "INSERT INTO ";
+		$query .= " `car_variant` ";
+		$query .= " (`make_id`,`model_id`,`variant`) ";
+		$query .= " VALUES ('$make','$model','$variant')";
+		$result = mysqli_query($con,$query);
+		confirm_query($result);
+		return $result;
+	}
+	function get_variant_list(){
+		global $con;
+		$query = "SELECT";
+		$query .= " variant_id AS id,make.make AS make,model,variant ";
+		$query .= " FROM";
+		$query .= " make,car_variant,car_model";
+		$query .= " WHERE";
+		$query .= " car_variant.model_id = car_model.model_id";
+		$query .= " AND car_model.make = make.id";
+		$query .=" ORDER BY id DESC";
+		$result = mysqli_query($con,$query);
+		confirm_query($result);
+		return $result;
+	}
+	function deleteVariant($id){
+		global $con;
+		$query = "DELETE FROM ";
+		$query .= "car_variant ";
+		$query .= "WHERE ";
+		$query .= "variant_id= {$id} ";
+		$query .= "LIMIT 1";
+		$result = mysqli_query($con,$query);
+		confirm_query($result);
+		if(mysqli_affected_rows($con)>0){
+			return TRUE;
+		}
+		else {
+			return FALSE;
+		}
+	}
+	function deleteModel($id){
+		global $con;
+		$query = "DELETE FROM ";
+		$query .= "car_variant ";
+		$query .= "WHERE ";
+		$query .= "model_id = {$id} ";
+		$result = mysqli_query($con,$query);
+		confirm_query($result);
+		if(mysqli_affected_rows($con)>0){
+			return TRUE;
+		}
+		else {
+			return FALSE;
+		}
 	}
 ?>

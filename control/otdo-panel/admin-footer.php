@@ -47,6 +47,7 @@
 	<script src="../vendors/chart.js/Chart.min.js"></script>
 	<script src="dist/js/init.js"></script>
 	<script src="dist/js/dashboard-data.js"></script>
+	<script src="./dist/js/ajax.js"></script>
 </body>
 
 </html>

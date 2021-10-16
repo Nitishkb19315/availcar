@@ -51,10 +51,13 @@
 						<a href="admin-testimonial.php" data-target="#ecom_dr"><div class="pull-left"><i class="fa fa-user mr-10"></i><span class="right-nav-text">Testimonial</span></div><div class="pull-right"><i class="ti-angle-down"></i></div><div class="clearfix"></div></a>
 					</li>
 					<li>
-						<a href="admin-blog.php" data-target="#ecom_dr"><div class="pull-left"><i class="fa fa-image mr-10"></i><span class="right-nav-text">Blog</span></div><div class="pull-right"><i class="ti-angle-down"></i></div><div class="clearfix"></div></a>
+						<a href="admin-make.php" data-target="#ecom_dr"><div class="pull-left"><i class="fa fa-car mr-10"></i><span class="right-nav-text">Make</span></div><div class="pull-right"><i class="ti-angle-down"></i></div><div class="clearfix"></div></a>
 					</li>
 					<li>
-						<a href="admin-story.php" data-target="#ecom_dr"><div class="pull-left"><i class="fa fa-file-text mr-10"></i><span class="right-nav-text">Success Story</span></div><div class="pull-right"><i class="ti-angle-down"></i></div><div class="clearfix"></div></a>
+						<a href="admin-model.php" data-target="#ecom_dr"><div class="pull-left"><i class="fa fa-car mr-10"></i><span class="right-nav-text">Model</span></div><div class="pull-right"><i class="ti-angle-down"></i></div><div class="clearfix"></div></a>
+					</li>
+					<li>
+						<a href="admin-variant.php" data-target="#ecom_dr"><div class="pull-left"><i class="fa fa-car mr-10"></i><span class="right-nav-text">Variant</span></div><div class="pull-right"><i class="ti-angle-down"></i></div><div class="clearfix"></div></a>
 					</li>
 					<li>
 						<a href="admin-news.php" data-target="#ecom_dr"><div class="pull-left"><i class="fa fa-file-text mr-10"></i><span class="right-nav-text">News</span></div><div class="pull-right"><i class="ti-angle-down"></i></div><div class="clearfix"></div></a>
