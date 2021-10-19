@@ -9,5 +9,6 @@ $(document).ready(function(){
                 console.log($('#car_model').html());
              }
         })
-    })
-})
+    });
+});
+

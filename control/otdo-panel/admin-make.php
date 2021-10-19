@@ -29,14 +29,6 @@
 								<form action="make-exe.php" method="POST" enctype="multipart/form-data">
 									<div class="row">
 										<div class="col-sm-12">
-											<div class=" form-group input-group">
-						                        <input type="text" class="form-control" placeholder="Select Date" name="dates" id="date" data-select="datepicker" required readonly=""><span class="input-group-btn">
-												<button type="button" class="btn btn-success" data-toggle="datepicker"><i class="fa fa-calendar"></i></button></span>
-						                    </div>
-										</div>
-									</div><!-- row -->
-									<div class="row">
-										<div class="col-sm-12">
 											<div class="form-group">
 												<input name="make" list="make" class="form-control" required="" placeholder="Enter Make">
                                                 <datalist id="make">
@@ -92,8 +84,8 @@
 									  	{
 										?>
 										<tr>
-										  <td><?php echo $sr++ ; ?></td>
-										  <td><?php echo $row['make']; ?></td>
+										  <td ><?php echo $sr++ ; ?></td>
+										  <td contenteditable="true" class="make_items"><?php echo $row['make']; ?></td>
                       					  <td class="text-center"><a href="delete-make.php?id=<?php echo $row['id']?>" class="text-red"><i class="zmdi zmdi-delete txt-danger txt-2x"></i></a></td>
 										</tr> 
 										<?php

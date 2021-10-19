@@ -67,6 +67,10 @@
 			$errorMsg .="<p class='alert alert-success'>  Send Successfully <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
 		    	<span aria-hidden='true'>&times;</span></button> </p> ";
 			break;
+			case 13:  // duplication
+				$errorMsg .="<p class='alert alert-danger'>Couldn't delete <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+				<span aria-hidden='true'>&times;</span></button> </p>";
+				break;
 			}
 
 		
@@ -786,7 +790,7 @@ function get_max_id($table_name){
 	function deleteModel($id){
 		global $con;
 		$query = "DELETE FROM ";
-		$query .= "car_variant ";
+		$query .= "car_model ";
 		$query .= "WHERE ";
 		$query .= "model_id = {$id} ";
 		$result = mysqli_query($con,$query);
@@ -795,6 +799,109 @@ function get_max_id($table_name){
 			return TRUE;
 		}
 		else {
+			return FALSE;
+		}
+	}
+
+	// ************ checking *******************
+	function check_make($make){
+		global $con;
+		$query = "SELECT `make` FROM";
+		$query .= " make";
+		$result = mysqli_query($con,$query);
+		confirm_query($result);
+		return check_existence_make($make,$result);
+	}
+	function check_modal($model){
+		global $con;
+		$query = "SELECT `model` FROM";
+		$query .= " `car_model`";
+		$result = mysqli_query($con,$query);
+		confirm_query($result);
+		return check_existence_model($model,$result);
+	}
+	function check_variant($variant){
+		global $con;
+		$query = "SELECT `variant` FROM";
+		$query .= " `car_variant`";
+		$result = mysqli_query($con,$query);
+		confirm_query($result);
+		return check_existence_variant($variant,$result);
+	}
+	function check_existence_variant($make,$result){
+		$status = true;
+		 if(mysqli_num_rows($result)>0){
+			while($row=mysqli_fetch_assoc($result)){
+				if(strtoupper($make)  ==  strtoupper($row['variant'])){
+					$status =false;
+					break;
+				}
+			}
+		 }
+		 return $status;
+	}
+	function check_existence_model($make,$result){
+		$status = true;
+		 if(mysqli_num_rows($result)>0){
+			while($row=mysqli_fetch_assoc($result)){
+				if(strtoupper($make)  ==  strtoupper($row['model'])){
+					$status =false;
+					break;
+				}
+			}
+		 }
+		 return $status;
+	}
+	function check_existence_make($make,$result){
+		$status = true;
+		 if(mysqli_num_rows($result)>0){
+			while($row=mysqli_fetch_assoc($result)){
+				if(strtoupper($make)  ==  strtoupper($row['make'])){
+					$status =false;
+					break;
+				}
+			}
+		 }
+		 return $status;
+	}
+	function check_subcategory_make($id,$table){
+		global $con;
+		$query = "SELECT `make` FROM";
+		$query .= " $table";
+		$query .= " WHERE make=$id";
+		$result = mysqli_query($con,$query);
+		confirm_query($result);
+		if(mysqli_num_rows($result)>0){
+			return false;
+		}
+		else{
+			return true;
+		}
+	}
+	function check_subcategory_model($id,$table){
+		global $con;
+		$query = "SELECT * FROM";
+		$query .= " `$table`";
+		$query .= " WHERE model_id=$id";
+		$result = mysqli_query($con,$query);
+		confirm_query($result);
+		if(mysqli_num_rows($result)>0){
+			return false;
+		}
+		else{
+			return true;
+		}
+	}
+	function update_make($make,$preVal){
+		global $con;
+		$query  = "UPDATE `make` ";
+		$query .= " SET make='$make' ";
+		$query .= " WHERE make='$preVal' ";
+		$result = mysqli_query($con,$query);
+		confirm_query($con,$result);
+		if(mysqli_affected_rows($con)>0){
+			return TRUE;
+		}else{
 			return FALSE;
 		}
 	}

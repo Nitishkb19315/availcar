@@ -4,7 +4,11 @@
 if(isset($_POST['submit'])){
     $make = mysql_prep($_POST['make']);
     $model = mysql_prep($_POST['model']);
-    addModel($make,$model);
-    redirect("admin-model.php?er=8");
+    if(check_modal($model)){
+        addModel($make,$model);
+        redirect("admin-model.php?er=8");
+    }else{
+        redirect("admin-model.php?er=2");
+    }
 }
 ?>

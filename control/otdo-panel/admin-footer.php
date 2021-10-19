@@ -48,6 +48,8 @@
 	<script src="dist/js/init.js"></script>
 	<script src="dist/js/dashboard-data.js"></script>
 	<script src="./dist/js/ajax.js"></script>
+	<script src="./dist/js/customeScript.js">
+	</script>
 </body>
 
 </html>
