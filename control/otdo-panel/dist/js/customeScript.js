@@ -14,6 +14,22 @@ $(document).ready(function(){
                 console.log(response);
              }
         })
+    }); 
+    // for manage feature page 
+    $(".feature_items").on("focus",function(){
+        preVal = $(this).text().trim();
+        console.log(preVal);
+    })
+    $(".feature_items").on("blur",function(){
+        var val = $(this).text().trim();
+        console.log(val)
+        $.ajax({
+            method: "GET",
+            url: "includes/update_feature.php?new="+val+"&preVal="+preVal,
+            success: function (response) {
+                console.log(response);
+             }
+        })
     });
 });
 

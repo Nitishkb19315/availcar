@@ -28,6 +28,7 @@
 	<link href="dist/css/style.css" rel="stylesheet" type="text/css">
 	<link rel="stylesheet" href="dist/css/jquery.datepicker.css">
 	
+	
 </head>
 
 <body>

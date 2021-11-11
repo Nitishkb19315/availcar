@@ -11,7 +11,6 @@ $make = mysql_prep($_POST['make']);
 if(check_make($make)){
     addMake($unique_id,$make);
     redirect("admin-make.php?er=8");
-    
 }else{
     redirect("admin-make.php?er=2");
 }

@@ -1,5 +1,6 @@
-<?php require_once("control\otdo-panel\includes/config.php"); ?>
-<?php require_once("control\otdo-panel\includes/functions.php"); ?>
+<?php require_once("control\dashboard\includes\config.php"); ?>
+<?php require_once("control\dashboard\includes/functions.php"); ?>
+
 <!DOCTYPE html>
 <html lang="zxx">
 

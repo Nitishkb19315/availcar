@@ -4,6 +4,8 @@
 <?php
 if(isset($_POST['submit']))
 {
+print_r($_FILES);
+exit();
 echo $category= mysql_prep($_POST['category']);
 $errors = array();
 $table_name = "gallery";

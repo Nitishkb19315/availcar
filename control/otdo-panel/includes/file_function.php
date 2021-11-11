@@ -21,7 +21,6 @@
 	  			$upload_dir = "uploads/".$upload_dir;
 	  			if(move_uploaded_file($tmp_name,$upload_dir."/".$target_file)){
 	  				thumbnail( $upload_dir."/".$target_file, $upload_dir."/".$target_file, $width, $height);
-
 					return $target_file;
 				} else {
 					return false;

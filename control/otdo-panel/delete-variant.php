@@ -5,6 +5,6 @@
 	{
 		
 		deleteVariant($_GET['id']);
-		redirect("admin-make.php?er=5");	
+		redirect("admin-variant.php?er=5");	
 	}
 ?>

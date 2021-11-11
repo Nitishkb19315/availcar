@@ -30,7 +30,7 @@
 				$errorMsg .="<p class='alert alert-danger'><i class='fa fa-times'></i> Username / Password is incorrect";
 				break;
 			case 2:  // duplication
-				$errorMsg .="<p class='alert alert-danger'>Record Already Exists error <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+				$errorMsg .="<p class='alert alert-danger'>Record Already Exists <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
 		    	<span aria-hidden='true'>&times;</span></button> </p>";
 				break;
 			case 3:
@@ -71,7 +71,13 @@
 				$errorMsg .="<p class='alert alert-danger'>Couldn't delete <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
 				<span aria-hidden='true'>&times;</span></button> </p>";
 				break;
+			case 14:  // duplication
+				$errorMsg .="<p class='alert alert-danger'>Couldn't update <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+				<span aria-hidden='true'>&times;</span></button> </p>";
+				break;
+			
 			}
+			
 
 		
 		$errorMsg .="</p>";
@@ -163,7 +169,7 @@
 		else 
 			return false;
 	}
-function get_max_id($table_name){
+	function get_max_id($table_name){
 		global $con;
 		$query = "select max(id) as 'id' from ".$table_name;
 		$result = mysqli_query($con,$query);
@@ -174,6 +180,21 @@ function get_max_id($table_name){
 				return 1;
 			else 
 				$unique_id =   $row['id'];
+				$unique_id = intval($unique_id)+1;
+				return $unique_id;
+		}
+	}
+	function get_max_position($table_name){
+		global $con;
+		$query = "select max(position) as 'position' from ".$table_name;
+		$result = mysqli_query($con,$query);
+		confirm_query($result); 
+		if(mysqli_num_rows($result)>0){
+			$row = mysqli_fetch_assoc($result);
+			if(is_null($row['position']))
+				return 1;
+			else 
+				$unique_id = $row['position'];
 				$unique_id = intval($unique_id)+1;
 				return $unique_id;
 		}
@@ -681,11 +702,38 @@ function get_max_id($table_name){
 		  confirm_query($result);
 		 return $result;
 	}
+	function get_car_models($id){
+		global $con;
+		  $query= "SELECT * FROM ";
+		  $query .=" car_model ";
+		  $query .="WHERE make=$id";
+		  $result = mysqli_query($con,$query);
+		  confirm_query($result);
+		 return $result;
+	}
+	function get_car_variants($make_id,$model_id){
+		global $con;
+		  $query= "SELECT * FROM ";
+		  $query .=" car_variant ";
+		  $query .=" WHERE make_id=$make_id AND model_id=$model_id";
+		  $result = mysqli_query($con,$query);
+		  confirm_query($result);
+		 return $result;
+	}
 	function get_car_model($id){
 		global $con;
 		$query = "SELECT * FROM ";
 		$query .=" `car_model`";
 		$query .=" WHERE `make`= $id";
+		$result= mysqli_query($con,$query);
+		confirm_query($result);
+		return $result;
+	}
+	function get_car_variant($id){
+		global $con;
+		$query = "SELECT * FROM ";
+		$query .=" `car_variant`";
+		$query .=" WHERE `model_id`= $id";
 		$result= mysqli_query($con,$query);
 		confirm_query($result);
 		return $result;
@@ -828,6 +876,26 @@ function get_max_id($table_name){
 		confirm_query($result);
 		return check_existence_variant($variant,$result);
 	}
+	function check_feature($feature){
+		global $con;
+		$query = "SELECT `feature` FROM";
+		$query .= " `car_feature`";
+		$result = mysqli_query($con,$query);
+		confirm_query($result);
+		return check_existence_feature($feature,$result);
+	}
+	function check_existence_feature($feature,$result){
+		$status = true;
+		 if(mysqli_num_rows($result)>0){
+			while($row=mysqli_fetch_assoc($result)){
+				if(strtoupper($feature)  ==  strtoupper($row['feature'])){
+					$status =false;
+					break;
+				}
+			}
+		 }
+		 return $status;
+	}
 	function check_existence_variant($make,$result){
 		$status = true;
 		 if(mysqli_num_rows($result)>0){
@@ -905,4 +973,184 @@ function get_max_id($table_name){
 			return FALSE;
 		}
 	}
+	// ****************  add feature  ***************
+	function addFeature($feature,$position){
+		global $con;
+		$query  = "INSERT INTO `car_feature` ";
+		$query .= " (`feature`,`position`) ";
+		$query .= " VALUES ('$feature',$position) ";
+		$result = mysqli_query($con,$query);
+		confirm_query($con,$result);
+		if(mysqli_affected_rows($con)>0){
+			return TRUE;
+		}else{
+			return FALSE;
+		}
+	}
+	function get_feature_list(){
+		global $con;
+		$query  = "SELECT * FROM ";
+		$query  .= "`car_feature` ";
+		$query  .="ORDER BY `position` ASC";
+		$result = mysqli_query($con,$query);
+		confirm_query($result);
+		return $result;
+	}
+	function update_feature($feature,$preVal){
+		global $con;
+		if(empty(trim($feature))){
+			$query  = "DELETE FROM `car_feature` ";
+			$query .= " WHERE feature='$preVal'";
+		}else{
+			$query  = "UPDATE car_feature ";
+			$query .= " SET feature='$feature' ";
+			$query .= " WHERE feature='$preVal'";
+		}
+		$result = mysqli_query($con,$query);
+		confirm_query($result);
+		// return $result;
+		if(mysqli_affected_rows($con)>0){
+			return TRUE;
+		}else{
+			return FALSE;
+		}
+	}
+	function delete_feature($id){
+		global $con;
+		$query = "DELETE FROM ";
+		$query .= "car_feature ";
+		$query .= "WHERE ";
+		$query .= "id= {$id} ";
+		$query .= "LIMIT 1";
+		$result = mysqli_query($con,$query);
+		confirm_query($result);
+		if(mysqli_affected_rows($con)>0){
+			return TRUE;
+		}
+		else {
+			return FALSE;
+		}
+	}
+	// ***************** Manage Package***********************
+	function check_package($package){
+		global $con;
+		$query = "SELECT `package_name` AS `package` FROM";
+		$query .= " `package`";
+		$result = mysqli_query($con,$query);
+		confirm_query($result);
+		return check_existence_package($package,$result);
+	}
+	function check_existence_package($package,$result){
+		$status = true;
+		 if(mysqli_num_rows($result)>0){
+			while($row=mysqli_fetch_assoc($result)){
+				if(strtoupper($package)  ==  strtoupper($row['package'])){
+					$status =false;
+					break;
+				}
+			}
+		 }
+		 return $status;
+	}
+	function addPackage($package,$price,$listing){
+		global $con;
+		$query = "INSERT INTO ";
+		$query .= " `package` ";
+		$query .= " (`package_name`,`package_price`,`package_listing`) ";
+		$query .= " VALUES ('$package','$price','$listing')";
+		$result = mysqli_query($con,$query);
+		confirm_query($result);
+		return $result;
+	}
+	function get_package_list(){
+		global $con;
+		$query = "SELECT * FROM ";
+		$query .= "`package` ";
+		$result = mysqli_query($con,$query);
+		confirm_query($result);
+		return $result;
+	}
+	function deletePackage($id){
+		global $con;
+		$query = "DELETE FROM ";
+		$query .= "package ";
+		$query .= "WHERE ";
+		$query .= "id= {$id} ";
+		$query .= "LIMIT 1";
+		$result = mysqli_query($con,$query);
+		confirm_query($result);
+		if(mysqli_affected_rows($con)>0){
+			return TRUE;
+		}
+		else {
+			return FALSE;
+		}
+	}
+
+	// **********************Listing******************************
+	function addListing($data,$filename){
+		global $con;
+		print_r($data);
+		$username=$data['username'];
+		$make=$data['make'];
+		$model=$data['model'];
+		$variant=$data['variant'];
+		$modelYear=$data['modelYear'];
+		$interiorColor=$data['interiorColor'];
+		$exteriorColor=$data['exteriorColor'];
+		$transmission =$data['transmission'];
+		$fuel=$data['fuel'];
+		$salePrice=$data['salePrice'];
+		$marketPrice=$data['marketPrice'];
+		$query = "INSERT INTO ";
+		$query .="listing ";
+		$query .="(username,make_id,model_id,variant_id,model_year,interior_color,exterior_color,transmission,fuel,sale_price,market_price,main_image) ";
+		$query .="VALUES ( ";
+		$query .=" '$username',$make,$model,$variant,$modelYear,'$interiorColor','$exteriorColor','$transmission','$fuel',$salePrice,$marketPrice,'$filename' ";
+		$query .= ");";
+		$result = mysqli_query($con,$query);
+		confirm_query($result);
+		return true;
+	}
+	function get_listing_list(){
+		global $con;
+		$query = "SELECT listing.id AS id,username,make.make AS make,car_model.model AS model,car_variant.variant AS variant,model_year,interior_color,exterior_color,transmission, fuel, sale_price, market_price,main_image,status FROM `listing`,car_model,car_variant,make WHERE listing.make_id = make.id AND listing.model_id = car_model.model_id AND listing.variant_id = car_variant.variant_id;";
+		$result = mysqli_query($con,$query);
+		confirm_query($result);
+		return $result;
+	}
+	function get_listing_item($id){
+		global $con;
+		$query = "SELECT * FROM listing WHERE";
+		$query .= " listing.id = $id";
+		$result = mysqli_query($con,$query);
+		confirm_query($result);
+		return mysqli_fetch_assoc($result);
+		//return $result;
+	}
+	function update_list($username,$id,$modelYear,$make,$model,$variant,$interiorColor,$exteriorColor,$transmission,$fuel,$salePrice,$marketPrice){
+		global $con;
+		$query = "UPDATE listing ";
+		$query .= "SET ";
+		$query .= "username='$username', ";
+		$query .= "model_year=$modelYear, ";
+		$query .= "make_id=$make, ";
+		$query .= "model_id=$model, ";
+		$query .= "variant_id=$variant, ";
+		$query .= "interior_color='$interiorColor', ";
+		$query .= "exterior_color='$exteriorColor', ";
+		$query .= "transmission='$transmission', ";
+		$query .= "fuel='$fuel', ";
+		$query .= "sale_price=$salePrice, ";
+		$query .= "market_price=$marketPrice ";
+		$query .= "WHERE id=$id";	
+		$result = mysqli_query($con,$query);
+		confirm_query($result);
+		if(mysqli_affected_rows($con)>0){
+			return TRUE;
+		}else{
+			return FALSE;
+		}
+	}
+
 ?>
