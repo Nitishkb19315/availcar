@@ -3,7 +3,7 @@
 /*//////////////////////////////////////////////////////////////////////////////////////////*/
 
 
-a,
+a,a:hover,
 .text-primary,
 .text-primary_h:hover,
 .text-primary_b:before,
@@ -37,7 +37,7 @@ a,
 .form-sidebar__btn:hover,
 .main-slider__link:hover,
 .top-bar__link:hover,
-.navbar-nav .nav-link:hover {color: #d01818;}
+.navbar-nav .nav-link:hover {color: #e01d27;}
 
 
 .bg-primary,
@@ -67,7 +67,7 @@ a,
 .list-tags__link:hover,
 .comment-btn:hover,
 .main-slider__link:before,
-.b-team:hover .b-team__inner {background-color: #d01818;}
+.b-team:hover .b-team__inner {background-color: #e01d27 !important;}
 
 
 .border_prim,
@@ -80,7 +80,7 @@ a,
 .noUi-handle,
 .slick-dots li.slick-active button,
 .slick-dots li:hover button,
-.btn-default:hover {border-color: #d01818;}
+.btn-default:hover {border-color: #e01d27;}
 
 .border-t_prim,
 .border-t_prim_h:hover,
@@ -89,11 +89,11 @@ a,
 .tooltip-1.top-right .tooltip-arrow,
 .widget-title:after,
 .nav-link.active:after,
-#page-preloader .spinner:before {border-top-color: #d01818;}
+#page-preloader .spinner:before {border-top-color: #e01d27;}
 
 .border-r_prim,
 .border-r_prim_h:hover,
-.tooltip-1.right .tooltip-arrow {border-right-color: #d01818;}
+.tooltip-1.right .tooltip-arrow {border-right-color: #e01d27;}
 
 .border-l_prim,
 .border-l_prim_h:hover,
@@ -101,7 +101,7 @@ a,
 .border-left_primary:before,
 .widget-title:after,
 .nav-link.active:after,
-.b-advantages:after {border-left-color: #d01818;}
+.b-advantages:after {border-left-color: #e01d27;}
 
 .border-b_prim,
 .border-b_prim_h:hover,
@@ -112,5 +112,37 @@ a,
 .collapse.in,
 .btn-link:hover,
 .b-advantages:after,
-.b-dealers-nav__link.active {border-bottom-color: #d01818;}
+.b-dealers-nav__link.active {border-bottom-color: #e01d27;}
+
+
+.widget .btn-red{
+    border-color: #e01d27 ;
+    background-color: #e01d27;
+}
+
+html .b-goods-f__slider .slick-slide:after{
+        background-color: #e01d27;
+}
+
+
+.nav-vehicle-detail-tabs .nav-link.active{
+   color: #e01d27 ;   
+}
+
+html .nav-vehicle-detail-tabs .nav-link.active:before{
+    border-bottom-color:  #e01d27 ; 
+}
+
+html .list-mark-2 li:before{
+        color: #e01d27 ;  
+}
+
+html .btn-border:hover{
+    border-color: #e01d27 ;
+    background-color: #e01d27;
+}
+
+.b-goods-f__descr-title:before{
+       border-color: #e01d27 ;
+}
 

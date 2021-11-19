@@ -10,7 +10,7 @@
                     <img class="auth-bg-image-dark" src="img/content/auth-bg-dark.jpg" alt="#">
                 </div>
                 <div class="page-auth__left">
-                    <h1 class="page-auth__title">Welcome to <span class="text-theme">Arion</span></h1>
+                    <h1 class="page-auth__title">Welcome to <span class="text-theme">AvailCar</span></h1>
                     <p class="page-auth__text">Duis aute irure dolor in reprehenderit in voluptate, qui in ea voluptate velit esse, quam
                         <br>nihil molestiae consequatur, vel illum, obcaecati cupiditate nons.
                     </p>

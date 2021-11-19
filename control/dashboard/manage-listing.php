@@ -1,5 +1,6 @@
 <?php require_once("./header.php") ?>
 <?php require_once("./svg.php") ?>
+<?php confirm_logged_in(); ?>
 
 <body>
 
@@ -39,20 +40,16 @@
                     </div>
                     <div class="page-tools__right">
                         <div class="page-tools__right-row">
-                            <div class="page-tools__right-item"><a class="button-icon" href="#"><span class="button-icon__icon">
-                                        <svg class="icon-icon-print">
-                                            <use xlink:href="#icon-print"></use>
-                                        </svg></span></a>
-                            </div>
-                            <div class="page-tools__right-item"><a class="button-icon" href="#"><span class="button-icon__icon">
-                                        <svg class="icon-icon-import">
-                                            <use xlink:href="#icon-import"></use>
-                                        </svg></span></a>
-                            </div>
+                            <a class="button-add button-add--blue" href="./add-listing.php"><span class="button-add__icon">
+                                    <svg class="icon-icon-plus">
+                                        <use xlink:href="#icon-plus"></use>
+                                    </svg></span><span class="button-add__text"></span>
+                            </a>
+                            
                         </div>
                     </div>
                 </div>
-                <div class="toolbox">
+                <!-- <div class="toolbox">
                     <div class="toolbox__row row gutter-bottom-xs">
                         <div class="toolbox__left col-12 col-lg">
                             <div class="toolbox__left-row row row--xs gutter-bottom-xs">
@@ -138,7 +135,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> -->
                 <div class="    ">
                     <div class="table-wrapper__content table-collapse scrollbar-thin scrollbar-visible" data-simplebar>
                         <table class="table table--lines" id="table">
@@ -242,13 +239,14 @@
                                                                                             } ?>"></i>
                                                                         </span>High Priority</a>
                                                                 </li>
-                                                                <li class="dropdown-items__item"><a class="dropdown-items__link listing_status" data-id="<?php echo $row['id'] ?>"><span class="dropdown-items__link-icon">
-                                                                            <i class="fas <?php if ($row['visibility'] == 1) {
-                                                                                                echo "fa-check-circle";
-                                                                                            } else {
-                                                                                                echo "fa-times-circle";
-                                                                                            } ?>"></i>
-                                                                        </span>Private</a>
+
+                                                                <li class="dropdown-items__item">
+                                                                    <a class="dropdown-items__link listing_visibility" data-id="<?php echo $row['id'] ?>" data-visibility="<?php echo $row['visibility'] ?>">
+                                                                        <span class="dropdown-items__link-icon">
+                                                                            <i class="fas fa-check-circle"></i>
+                                                                        </span>
+                                                                        <?php echo $row['visibility'] ?>
+                                                                    </a>
                                                                 </li>
                                                                 <li class="dropdown-items__item"><a class="dropdown-items__link listing_status" data-status="<?php echo $row['status'] ?>" data-id="<?php echo $row['id'] ?>"><span class="dropdown-items__link-icon">
                                                                             <i class="fas <?php if ($row['status'] == 1) {

@@ -9,7 +9,6 @@ if (isset($_POST['submit'])) {
         $_POST['username'] = get_username($_POST['user_id']);
     }
     $_POST['feature']=implode(",",$_POST['feature']);
-    $table_name = "listing";
     $username = mysql_prep($_POST['username']);
     $errors = array();
     $table_name = "listing";

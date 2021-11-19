@@ -1,12 +1,10 @@
 <?php require_once("./header.php") ?>
 <?php confirm_logged_in(); ?>
 <?php require_once("./svg.php") ?>
-
-
 <body class="make-page">
     <div class="sidebar-backdrop"></div>
     <div class="page-wrapper">
-        <?php if(confirm_admin()){ redirect('dashboard.php');}else{ require_once('./user-navbar.php');} ?>
+        <?php if(!confirm_admin()){ redirect('user-dashboard.php');}else{ require_once('navbar.php');} ?>
         <main class="page-content">
             <div class="container">
                 <div class="page-header">

@@ -126,6 +126,21 @@ $(document).ready(function () {
             }
         })
     })
+    $(".listing_visibility").on("click", function() {
+        var id = $(this).attr('data-id');
+        var status = $(this).attr('data-visibility');
+        console.log(status);
+        $.ajax({
+            method: "GET",
+            url: "includes/change-listing-visibility.php?id="+id+"&status="+status,
+            
+        }).done((data)=>{
+            $(this).attr("data-visibility",data.trim());
+            var span = $(this).find("span");
+            $(this).html(span);
+            $(this).append(data)
+        })
+    });
     $(".listing_availability").on("click", function() {
         var id = $(this).attr('data-id');
         var status = $(this).attr('data-availability');

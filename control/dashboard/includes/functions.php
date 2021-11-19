@@ -54,8 +54,7 @@
 		    	<span aria-hidden='true'>&times;</span></button>  </p>";
 				break;
 			case 8:
-				$errorMsg .= "<p class='alert alert-success'> Added Successfully <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
-		    	<span aria-hidden='true'>&times;</span></button> </p>";
+				$errorMsg .= "<p class='alert alert-success'> Added Successfully </p>";
 				break;
 			case 9:
 				$errorMsg .= "<p class=\"error\">Problem With file please upload file less then 900kb ";
@@ -103,6 +102,10 @@
 			case 20:
 				// $errorMsg .="<p class='alert alert-danger'><i class='fa fa-times'></i> Unmatched Password";
 				$errorMsg .= "listing already approved";
+				break;
+			case 21:
+				// $errorMsg .="<p class='alert alert-danger'><i class='fa fa-times'></i> Unmatched Password";
+				$errorMsg .= "Failed";
 				break;
 		}
 		$errorMsg .= "</p>";
@@ -947,14 +950,14 @@
 		confirm_query($result);
 		return check_existence_model($model, $result);
 	}
-	function check_variant($variant)
+	function check_variant($model,$variant)
 	{
 		global $con;
-		$query = "SELECT `variant` FROM";
+		$query = "SELECT * FROM";
 		$query .= " `car_variant`";
 		$result = mysqli_query($con, $query);
 		confirm_query($result);
-		return check_existence_variant($variant, $result);
+		return check_existence_variant($model,$variant, $result);
 	}
 	function check_feature($feature)
 	{
@@ -978,13 +981,13 @@
 		}
 		return $status;
 	}
-	function check_existence_variant($make, $result)
+	function check_existence_variant($model ,$variant, $result)
 	{
 		$status = true;
 		if (mysqli_num_rows($result) > 0) {
 			while ($row = mysqli_fetch_assoc($result)) {
-				if (strtoupper($make)  ==  strtoupper($row['variant'])) {
-					$status = false;
+				if (strtoupper($variant)  ==  strtoupper($row['variant']) && strtoupper($model)  ==  strtoupper($row['model_id'])) {
+					$status = false ;
 					break;
 				}
 			}
@@ -1233,9 +1236,29 @@
 	function get_listing_list()
 	{
 		global $con;
-		$query = "SELECT listing.id AS id,`availabilty`,username,make.make AS make,car_model.model AS model,car_variant.variant AS variant,model_year,interior_color,exterior_color,transmission, fuel, sale_price, market_price,main_image,`status`,feature_state,users_listings.approval as `approval`,users_listings.priority	 as priority	 
+		$query = "SELECT listing.id AS id,`availabilty`,username,make.make AS make,car_model.model AS model,car_variant.variant AS variant,model_year,interior_color,exterior_color,transmission, fuel, sale_price, market_price,main_image,`status`,feature_state,users_listings.approval as `approval`,users_listings.priority	 as priority,visibility,description	
 					FROM `listing`,car_model,car_variant,make, users_listings 
 					WHERE listing.make_id = make.id AND listing.model_id = car_model.model_id AND listing.variant_id = car_variant.variant_id AND users_listings.listing_id = listing.id;";
+		$result = mysqli_query($con, $query);
+		confirm_query($result);
+		return $result;
+	}
+	function get_approved_listing_list()
+	{
+		global $con;
+		$query = "SELECT listing.id AS id,`availabilty`,username,make.make AS make,car_model.model AS model,car_variant.variant AS variant,model_year,interior_color,exterior_color,transmission, fuel, sale_price, market_price,main_image,`status`,feature_state,users_listings.approval as `approval`,users_listings.priority	 as priority,visibility,description	
+					FROM `listing`,car_model,car_variant,make, users_listings 
+					WHERE listing.make_id = make.id AND listing.model_id = car_model.model_id AND listing.variant_id = car_variant.variant_id AND users_listings.listing_id = listing.id AND users_listings.approval = 'Approved' ;";
+		$result = mysqli_query($con, $query);
+		confirm_query($result);
+		return $result;
+	}
+	function get_approved_inventory_listing_list($page_first_result,$item_per_page)
+	{
+		global $con;
+		$query = "SELECT listing.id AS id,`availabilty`,username,make.make AS make,car_model.model AS model,car_variant.variant AS variant,model_year,interior_color,exterior_color,transmission, fuel, sale_price, market_price,main_image,`status`,feature_state,users_listings.approval as `approval`,users_listings.priority	 as priority,visibility,description	
+					FROM `listing`,car_model,car_variant,make, users_listings 
+					WHERE listing.make_id = make.id AND listing.model_id = car_model.model_id AND listing.variant_id = car_variant.variant_id AND users_listings.listing_id = listing.id AND users_listings.approval = 'Approved' LIMIT $page_first_result,$item_per_page;";
 		$result = mysqli_query($con, $query);
 		confirm_query($result);
 		return $result;
@@ -1429,9 +1452,32 @@
 			return "fail";
 		}
 	}
+	function change_listing_visibility($id,$status)
+	{
+		global $con;
+		$status= trim($status);
+		$return_status = "Public";
+		if($status == "Private"){
+			$query = "UPDATE `users_listings` SET `visibility` = 'Public' WHERE `listing_id` = $id;";
+			$return_status  = "Public";
+			$result = mysqli_query($con, $query);
+		}else{
+			$query = "UPDATE `users_listings` SET `visibility` = 'Private' WHERE `listing_id` = $id;";
+			$return_status  = "Private";
+			$result = mysqli_query($con, $query);
+		}
+		
+		
+		confirm_query($result);
+		if (mysqli_affected_rows($con) > 0) {
+			return  $return_status;
+		} else {
+			return $return_status;
+		}
+	}
 	function get_all_pending_listings(){
 		global $con;
-		$query = "SELECT listing.id AS id,`availabilty`,username,make.make AS make,car_model.model AS model,car_variant.variant AS variant,model_year,interior_color,exterior_color,transmission, fuel, sale_price, market_price,main_image,`status`,feature_state,users_listings.approval as `approval` FROM `listing`,car_model,car_variant,make, users_listings WHERE listing.make_id = make.id AND listing.model_id = car_model.model_id AND listing.variant_id = car_variant.variant_id AND users_listings.listing_id = listing.id AND users_listings.approval='Pending';";
+		$query = "SELECT listing.id AS id,`availabilty`,username,make.make AS make,car_model.model AS model,car_variant.variant AS variant,model_year,interior_color,exterior_color,transmission, fuel, sale_price, market_price,main_image,`status`,feature_state,users_listings.approval as `approval`,visibility FROM `listing`,car_model,car_variant,make, users_listings WHERE listing.make_id = make.id AND listing.model_id = car_model.model_id AND listing.variant_id = car_variant.variant_id AND users_listings.listing_id = listing.id AND users_listings.approval='Pending';";
 		$result = mysqli_query($con, $query);
 		confirm_query($result);
 		if(mysqli_num_rows($result) > 0){
@@ -1598,7 +1644,6 @@
 		$query .= "`profile_image` = '$filename' ";
 		$query .= " WHERE `user_id` = " . $data['id'];
 		$result = mysqli_query($con, $query);
-		print_r($query);
 		confirm_query($result);
 		if (mysqli_affected_rows($con) > 0) {
 			return true;
@@ -1651,7 +1696,8 @@
 			return false;
 		}
 	}
-	function get_users(){
+	function get_users()
+	{
 		global $con;
 		$query = "SELECT * FROM users WHERE account_status=1;";
 		$result = mysqli_query($con, $query);
@@ -1780,5 +1826,154 @@
 		}else{
 			return false;
 		}
+	}
+
+	// ***************************** fort-end  index.php **************************
+	function get_inventory_list_with_limit($limit){
+		global $con;
+		$query = "SELECT listing.id AS id,`availabilty`,username,make.make AS make,car_model.model AS model,car_variant.variant AS variant,model_year,interior_color,exterior_color,transmission, fuel, sale_price, market_price,main_image,`status`,feature_state,users_listings.approval as `approval`,users_listings.priority	 as priority,visibility,description	FROM `listing`,car_model,car_variant,make, users_listings 
+		WHERE listing.make_id = make.id AND listing.model_id = car_model.model_id AND listing.variant_id = car_variant.variant_id AND users_listings.listing_id = listing.id AND users_listings.approval = 'Approved'
+		ORDER BY listing.id DESC LIMIT $limit;";
+		$result = mysqli_query($con, $query);
+		confirm_query($result);
+		if(mysqli_num_rows($result) > 0){
+			return $result;
+		}else{
+			return $result;
+		}
+	}
+	function addReview($id,$name,$review,$type ,$filename){
+		global $con;
+		$query = "INSERT INTO `reviews` ";
+		$query .= " VALUES($id,'$name','$type','$filename','$review')";
+		$result = mysqli_query($con, $query);
+		confirm_query($result);
+		if(mysqli_affected_rows($con) > 0){
+			return true;
+		}else{
+			return false;
+		}
+	}
+	function get_review_list(){
+		global $con;
+		$query = "SELECT * FROM `reviews`";
+		$result = mysqli_query($con, $query);
+		confirm_query($result);
+		if(mysqli_num_rows($result) > 0){
+			return $result;
+		}else{
+			return false;
+		}
+	}
+	function deleteReview($id){
+		global $con;
+		$query = "DELETE FROM `reviews` WHERE id = $id";
+		$result = mysqli_query($con, $query);
+		confirm_query($result);
+		if(mysqli_affected_rows($con)>0){
+			return true;
+		}else{
+			return false;
+		}
+
+	}
+	function get_vehicle_details($id){
+		global $con;
+		$query = "SELECT l.*,make.make,car_model.model,car_variant.variant ";
+		$query .= "FROM `listing` AS l,`make`,`car_model`,`car_variant` ";
+		$query .= "WHERE make.id = l.make_id AND car_model.model_id = l.model_id AND car_variant.variant_id = l.variant_id AND l.id =$id ;";
+		$result = mysqli_query($con, $query);
+		confirm_query($result);
+		if(mysqli_num_rows($result) > 0){
+			return $result;
+		}else{
+			return false;
+		}
+	}
+	function get_feature_name($id){
+		global $con;
+		$query = "SELECT * FROM `car_feature` WHERE id IN ($id) ORDER BY position ASC";
+		$result = mysqli_query($con, $query);
+		confirm_query($result);
+		if(mysqli_num_rows($result) > 0){
+			return $result;
+		}else{
+			return false;
+		}
+	}	
+	function get_agent_details($id){
+		global $con;
+		$query = "SELECT users.id AS id, users.email AS email,visibility,username,mobile_no,user_profile.fname AS fname,user_profile.lname AS lname,user_profile.profile_image AS image ";
+		$query .= "FROM `users_listings`,`users`,`user_profile`  ";
+		$query .= "WHERE users.id = users_listings.user_id AND users.id = user_profile.user_id AND users_listings.listing_id = $id; ";
+		$result = mysqli_query($con, $query);
+		if(mysqli_num_rows($result) > 0){
+			return $result;
+		}else{
+			return false;
+		}
+	}
+	function get_searched_listing_list($data,$page_first_result,$item_per_page){
+		global $con;
+		$query = "SELECT listing.id AS id,`availabilty`,username,make.make AS make,car_model.model AS model,car_variant.variant AS variant,model_year,interior_color,exterior_color,transmission, fuel, sale_price, market_price,main_image,`status`,feature_state,users_listings.approval as `approval`,users_listings.priority	 as priority,visibility,description	
+					FROM `listing`,car_model,car_variant,make, users_listings 
+					WHERE listing.make_id = make.id AND listing.model_id = car_model.model_id AND listing.variant_id = car_variant.variant_id AND users_listings.listing_id = listing.id AND users_listings.approval = 'Approved' ";
+		foreach ($data as $key => $value){
+			if($key =='market_price' || $key =='max_sale_price' || $key =='min_sale_price' || $key =='pg' || $key == 'submit'){
+				continue;
+			}
+			$query .= "AND listing.$key = '$value' ";
+		}
+		if(isset($_GET['max_sale_price']) || isset($_GET['min_sale_price'])){
+			$price = 999999999999;
+			$min_price = 0;
+			if(isset($_GET['min_sale_price']) && !empty($_GET['min_sale_price'])){
+				$min_price = $_GET['min_sale_price'];
+				
+			}
+			if(isset($_GET['max_sale_price']) && !empty($_GET['max_sale_price'])){
+				$price = $_GET['max_sale_price'];
+			}
+			$query .= "AND sale_price BETWEEN $min_price AND $price ";
+		}
+		
+		$query .="LIMIT $page_first_result,$item_per_page;";
+		$result = mysqli_query($con, $query);
+		confirm_query($result);
+		return $result;
+	}
+	function total_searched_listings($data){
+		global $con;
+		$query = "SELECT listing.id AS id,`availabilty`,username,make.make AS make,car_model.model AS model,car_variant.variant AS variant,model_year,interior_color,exterior_color,transmission, fuel, sale_price, market_price,main_image,`status`,feature_state,users_listings.approval as `approval`,users_listings.priority	 as priority,visibility,description	
+					FROM `listing`,car_model,car_variant,make, users_listings 
+					WHERE listing.make_id = make.id AND listing.model_id = car_model.model_id AND listing.variant_id = car_variant.variant_id AND users_listings.listing_id = listing.id AND users_listings.approval = 'Approved' ";
+		foreach ($data as $key => $value){
+			if($key =='market_price' || $key =='max_sale_price' || $key =='min_sale_price' || $key =='pg' || $key == 'submit'){
+				continue;
+			}
+			$query .= "AND listing.$key = '$value' ";
+		}
+		if(isset($_GET['max_sale_price']) || isset($_GET['min_sale_price'])){
+			$price = 999999999999;
+			$min_price = 0;
+			if(isset($_GET['min_sale_price']) && !empty($_GET['min_sale_price'])){
+				$min_price = $_GET['min_sale_price'];
+			}
+			if(isset($_GET['max_sale_price']) && !empty($_GET['max_sale_price'])){
+				$price = $_GET['max_sale_price'];
+			}
+			$query .= "AND sale_price BETWEEN $min_price AND $price ";
+		}
+		$query .=";";
+		$result = mysqli_query($con, $query);
+		confirm_query($result);
+		return mysqli_num_rows($result);
+	}
+	function total_listings(){
+		global $con;
+		$query = "SELECT * FROM `users_listings` WHERE 	approval = 'Approved'";
+		$result = mysqli_query($con,$query);
+		confirm_query($result);
+		return mysqli_num_rows($result);
 	}
 ?>

@@ -412,7 +412,8 @@
                                     <use xlink:href="#icon-dashboard"></use>
                                 </svg></span><span class="sidebar__link-text">Dashboard</span></a>
                     </li>
-                    <li class="sidebar__menu-item"><a class="sidebar__link " href="" data-toggle="collapse" data-target="#E-Commerce" aria-expanded="false"><span class="sidebar__link-icon">
+
+                    <!-- <li class="sidebar__menu-item"><a class="sidebar__link " href="" data-toggle="collapse" data-target="#E-Commerce" aria-expanded="false"><span class="sidebar__link-icon">
                                 <svg class="icon-icon-cart">
                                     <use xlink:href="#icon-cart"></use>
                                 </svg></span><span class="sidebar__link-text">E-Commerce</span><span class="sidebar__link-arrow">
@@ -455,7 +456,7 @@
                                 </li>
                             </ul>
                         </div>
-                    </li>
+                    </li> -->
                     <!-- Inventory -->
                     <li class="sidebar__menu-item"><a class="sidebar__link" href="" data-toggle="collapse" data-target="#Inventory" aria-expanded="false"><span class="sidebar__link-icon">
                                 <svg class="icon-icon-cart">
@@ -479,7 +480,7 @@
                             </ul>
                         </div>
                     </li>
-                    <li class="sidebar__menu-item"><a class="sidebar__link" href="" data-toggle="collapse" data-target="#Accounts" aria-expanded="false"><span class="sidebar__link-icon">
+                    <!-- <li class="sidebar__menu-item"><a class="sidebar__link" href="" data-toggle="collapse" data-target="#Accounts" aria-expanded="false"><span class="sidebar__link-icon">
                                 <svg class="icon-icon-cart">
                                     <use xlink:href="#icon-cart"></use>
                                 </svg></span><span class="sidebar__link-text">Accounts</span><span class="sidebar__link-arrow">
@@ -493,7 +494,7 @@
 
                             </ul>
                         </div>
-                    </li>
+                    </li> -->
                     <!-- <li class="sidebar__menu-item"><a class="sidebar__link" href="calendar.php" aria-expanded="false"><span class="sidebar__link-icon">
                                 <svg class="icon-icon-calendar">
                                     <use xlink:href="#icon-calendar"></use>
@@ -514,22 +515,22 @@
                                     <use xlink:href="#icon-contacts"></use>
                                 </svg></span><span class="sidebar__link-text">Manage Contact</span></a>
                     </li>
-                    <li class="sidebar__menu-item"><a class="sidebar__link" href="todo.php" aria-expanded="false"><span class="sidebar__link-icon">
+                    <li class="sidebar__menu-item"><a class="sidebar__link" href="manage-reviews.php" aria-expanded="false"><span class="sidebar__link-icon">
                                 <svg class="icon-icon-todo">
                                     <use xlink:href="#icon-todo"></use>
-                                </svg></span><span class="sidebar__link-text">ToDo</span></a>
+                                </svg></span><span class="sidebar__link-text">Manage Reviews</span></a>
                     </li>
                     <li class="sidebar__menu-item"><a class="sidebar__link" href="file-manager.php" aria-expanded="false"><span class="sidebar__link-icon">
                                 <svg class="icon-icon-folder">
                                     <use xlink:href="#icon-folder"></use>
                                 </svg></span><span class="sidebar__link-text">File Manager</span></a>
                     </li>
-                    <li class="sidebar__menu-item"><a class="sidebar__link" href="timeline.php" aria-expanded="false"><span class="sidebar__link-icon">
+                    <!-- <li class="sidebar__menu-item"><a class="sidebar__link" href="timeline.php" aria-expanded="false"><span class="sidebar__link-icon">
                                 <svg class="icon-icon-clock">
                                     <use xlink:href="#icon-clock"></use>
                                 </svg></span><span class="sidebar__link-text">Timeline</span></a>
-                    </li>
-                    <li class="sidebar__menu-item"><a class="sidebar__link" href="#" data-toggle="collapse" data-target="#Auth" aria-expanded="false"><span class="sidebar__link-icon">
+                    </li> -->
+                    <!-- <li class="sidebar__menu-item"><a class="sidebar__link" href="#" data-toggle="collapse" data-target="#Auth" aria-expanded="false"><span class="sidebar__link-icon">
                                 <svg class="icon-icon-password">
                                     <use xlink:href="#icon-password"></use>
                                 </svg></span><span class="sidebar__link-text">Authentication</span><span class="sidebar__link-arrow">
@@ -571,7 +572,7 @@
                                 <svg class="icon-icon-settings">
                                     <use xlink:href="#icon-settings"></use>
                                 </svg></span><span class="sidebar__link-text">UI Kit</span></a>
-                    </li>
+                    </li> -->
                 </ul>
             </nav>
         </div>
