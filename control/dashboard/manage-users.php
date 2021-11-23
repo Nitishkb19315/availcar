@@ -27,7 +27,7 @@
                                             </svg>
                                         </a>
                                     </li>
-                                    <li class="breadcrumbs__item disabled"><a class="breadcrumbs__link" href="#"><span>E-commerce</span>
+                                    <li class="breadcrumbs__item disabled"><a class="breadcrumbs__link" href="#"><span>Accounts</span>
                                             <svg class="icon-icon-keyboard-right breadcrumbs__arrow">
                                                 <use xlink:href="#icon-keyboard-right"></use>
                                             </svg></a>
@@ -40,20 +40,17 @@
                     </div>
                     <div class="page-tools__right">
                         <div class="page-tools__right-row">
-                            <div class="page-tools__right-item"><a class="button-icon" href="#"><span class="button-icon__icon">
-                                        <svg class="icon-icon-print">
-                                            <use xlink:href="#icon-print"></use>
-                                        </svg></span></a>
-                            </div>
-                            <div class="page-tools__right-item"><a class="button-icon" href="#"><span class="button-icon__icon">
-                                        <svg class="icon-icon-import">
-                                            <use xlink:href="#icon-import"></use>
-                                        </svg></span></a>
+                            <div class="page-tools__right-item">
+                                <a href="./add-user.php" class="button-add button-add--blue" data-modal="#"><span class="button-add__icon">
+                                            <svg class="icon-icon-plus">
+                                                <use xlink:href="#icon-plus"></use>
+                                            </svg></span><span class="button-add__text"></span>
+                                </a>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="toolbox">
+                <!-- <div class="toolbox">
                     <div class="toolbox__row row gutter-bottom-xs">
                         <div class="toolbox__left col-12 col-lg">
                             <div class="toolbox__left-row row row--xs gutter-bottom-xs">
@@ -119,10 +116,10 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> -->
                 <div class="table-wrapper">
                     <div class="table-wrapper__content table-collapse scrollbar-thin scrollbar-visible" data-simplebar>
-                        <table class="table table--spaces">
+                        <table class="table table--spaces" id="table">
                             <colgroup>
                                 <col width="70px">
                                 <col>
@@ -186,12 +183,12 @@
                                                                                             } ?>" alt="#">
                                                     </a>
                                                     <div class="media-item__right">
-                                                        <h5 class="media-item__title"><a href="customer-account.html"><?php echo $row['username']; ?> </a></h5><a class="text-sm text-grey" href="mailto:#"><?php echo $row['email'] ?></a>
+                                                        <h5 class="media-item__title"><a href="customer-account.html"><?php echo $row['username']; ?> </a></h5><a class="text-sm text-grey" href="mailto:<?php echo $row['email'] ?>"><?php echo $row['email'] ?></a>
                                                     </div>
                                                 </div>
                                             </td>
                                             <td class="table__td text-light-theme"><?php echo $row['city']; ?>, <?php echo $row['country']; ?></td>
-                                            <td class="table__td text-dark-theme">1000</td>
+                                            <td class="table__td text-dark-theme"><?php echo get_user_listing_count($row['id']); ?></td>
                                             <td class="table__td text-light-theme"><?php echo $row['date_of_signup']; ?></td>
                                             <td class="table__td d-none d-sm-table-cell">
                                                 <div class="table__status"><span class="table__status-icon color-green"></span> <?php if ($row['account_status'] == 1) {
@@ -250,7 +247,7 @@
                             </tbody>
                         </table>
                     </div>
-                    <div class="table-wrapper__footer">
+                    <!-- <div class="table-wrapper__footer">
                         <div class="row">
                             <div class="table-wrapper__show-result col text-grey"><span class="d-none d-sm-inline-block">Showing</span> 1 to 10 <span class="d-none d-sm-inline-block">of 50 items</span>
                             </div>
@@ -282,7 +279,7 @@
                                 </ol>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </main>

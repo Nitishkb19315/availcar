@@ -61,8 +61,8 @@
                                                 </div>
                                             </div> -->
                                             <div class="col-auto">
-                                                <div class="form-group"><a class="text-blue" href="auth-forgot.php">Forgot Password?</a>
-                                                </div>
+                                                <!-- <div class="form-group"><a class="text-blue" href="auth-forgot.php">Forgot Password?</a>
+                                                </div> -->
                                                 <div class="form-group"><a class="text-blue" href="admin-login.php">Admin Login</a>
                                                 </div>
                                             </div>
@@ -70,7 +70,7 @@
                                         <div class="auth-panel__submit">
                                             <input type="submit" name="submit" value="Log in" class="button button--primary button--block">
                                         </div>
-                                        <div class="auth-panel__divider">OR</div>
+                                        <!-- <div class="auth-panel__divider">OR</div>
                                         <div class="auth-panel__social">
                                             <a class="auth-panel__social-link" href="#">
                                                 <img src="img/content/s-facebook.svg" alt="#">
@@ -84,7 +84,7 @@
                                             <a class="auth-panel__social-link" href="#">
                                                 <img src="img/content/s-pinterest.svg" alt="#">
                                             </a>
-                                        </div>
+                                        </div> -->
                                     </div>
                                 </div>
                                 <div class="auth-panel__footer">

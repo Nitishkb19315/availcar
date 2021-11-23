@@ -16,14 +16,14 @@
                         </button>
                     </div>
                     <div class="header__search">
-                        <form class="form-search" action="#" method="GET">
+                        <!-- <form class="form-search" action="#" method="GET">
                             <div class="form-search__container"><span class="form-search__icon-left">
                                     <svg class="icon-icon-search">
                                         <use xlink:href="#icon-search"></use>
                                     </svg></span>
                                 <input class="form-search__input" type="text" placeholder="Search..." />
                             </div>
-                        </form>
+                        </form> -->
                     </div>
                 </div>
                 <div class="header__col-right col d-flex align-items-center">
@@ -477,10 +477,12 @@
                                 </li>
                                 <li class="sidebar__menu-item"><a class="sidebar__link" href="./manage-listing.php"><span class="sidebar__link-signal"></span><span class="sidebar__link-text">Manage Listing </span></a>
                                 </li>
+                                <li class="sidebar__menu-item"><a class="sidebar__link" href="./manage-packages.php"><span class="sidebar__link-signal"></span><span class="sidebar__link-text">Manage Packages </span></a>
+                                </li>
                             </ul>
                         </div>
                     </li>
-                    <!-- <li class="sidebar__menu-item"><a class="sidebar__link" href="" data-toggle="collapse" data-target="#Accounts" aria-expanded="false"><span class="sidebar__link-icon">
+                    <li class="sidebar__menu-item"><a class="sidebar__link" href="" data-toggle="collapse" data-target="#Accounts" aria-expanded="false"><span class="sidebar__link-icon">
                                 <svg class="icon-icon-cart">
                                     <use xlink:href="#icon-cart"></use>
                                 </svg></span><span class="sidebar__link-text">Accounts</span><span class="sidebar__link-arrow">
@@ -489,12 +491,15 @@
                                 </svg></span></a>
                         <div class="collapse" id="Accounts">
                             <ul class="sidebar__collapse-menu">
+                                <li class="sidebar__menu-item"><a class="sidebar__link " href="./add-user.php"><span class="sidebar__link-signal"></span><span class="sidebar__link-text">Add User</span></a>
+                                </li>
                                 <li class="sidebar__menu-item"><a class="sidebar__link " href="./manage-users.php"><span class="sidebar__link-signal"></span><span class="sidebar__link-text">Manage Users</span></a>
                                 </li>
+                                
 
                             </ul>
                         </div>
-                    </li> -->
+                    </li>
                     <!-- <li class="sidebar__menu-item"><a class="sidebar__link" href="calendar.php" aria-expanded="false"><span class="sidebar__link-icon">
                                 <svg class="icon-icon-calendar">
                                     <use xlink:href="#icon-calendar"></use>

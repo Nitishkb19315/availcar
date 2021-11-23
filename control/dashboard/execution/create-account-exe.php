@@ -16,7 +16,12 @@ if (isset($_POST['submit'])) {
         redirect($page."?er=15");
         exit();
     }
-    if(check_exists_user($_POST)){
+    $check_array = array();
+    $check['username']= $uname;
+    $check['email'] = $email;
+    $check['mobile_no'] = $mobile_no;
+
+    if(check_exists_user($check_array)){
         redirect("../auth-create.php?er=16");
         exit();
     }

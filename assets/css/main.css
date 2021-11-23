@@ -1886,7 +1886,6 @@ html, body {
 }
 
 .b-goods-f:not(.b-goods-f_row) .b-goods-f__sidebar {
-  height: 36px;
   line-height: 1;
 }
 
@@ -3274,7 +3273,7 @@ html, body {
   bottom: 0;
   left: 0;
   opacity: .95;
-  background-color: #f1f5fa;
+  background-color: #ffffff;
   content: '';
 }
 
@@ -4255,7 +4254,7 @@ html, body {
   font-size: 24px;
   border-bottom: 1px solid #ddd;
   padding-bottom: 20px;
-  margin-bottom: 40px !important;
+  margin-bottom: 18px !important;
 }
 
 .b-goods-f__title2 {

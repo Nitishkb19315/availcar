@@ -39,20 +39,18 @@
                     </div>
                     <div class="page-tools__right">
                         <div class="page-tools__right-row">
-                            <div class="page-tools__right-item"><a class="button-icon" href="#"><span class="button-icon__icon">
-                                        <svg class="icon-icon-print">
-                                            <use xlink:href="#icon-print"></use>
-                                        </svg></span></a>
-                            </div>
-                            <div class="page-tools__right-item"><a class="button-icon" href="#"><span class="button-icon__icon">
-                                        <svg class="icon-icon-import">
-                                            <use xlink:href="#icon-import"></use>
-                                        </svg></span></a>
+                            
+                            <div class="page-tools__right-item">
+                                    <a class="button-add button-add--blue" href="./user-add-listing.php"><span class="button-add__icon">
+                                            <svg class="icon-icon-plus">
+                                                <use xlink:href="#icon-plus"></use>
+                                            </svg></span><span class="button-add__text"></span>
+                                    </a>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="toolbox">
+                <!-- <div class="toolbox">
                     <div class="toolbox__row row gutter-bottom-xs">
                         <div class="toolbox__left col-12 col-lg">
                             <div class="toolbox__left-row row row--xs gutter-bottom-xs">
@@ -138,7 +136,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> -->
                 <div class="    ">
                     <div class="table-wrapper__content table-collapse scrollbar-thin scrollbar-visible" data-simplebar>
                         <table class="table table--lines" id="table">

@@ -35,7 +35,7 @@
                 <section class="footer-section footer-section_link">
                   <h3 class="footer-section__title">About AvailCar</h3>
                   <ul class="footer-list list-unstyled">
-                    <li><a href="./">Home</a></li>
+                    <li><a href="./index.php/">Home</a></li>
                     <li><a href="./about.php">About us</a></li>
                     <li><a href="./inventory-list.php">Inventory</a></li>
                     <li><a href="./contacts.php">Contact</a></li>
@@ -47,7 +47,6 @@
                   <h3 class="footer-section__title">Customer Links</h3>
                   <ul class="footer-list list-unstyled">
                     <li><a href="./inventory-list.php">Latest Cars</a></li>
-                    <li><a href="#">Featured Cars</a></li>
                     <li><a href="./control/dashboard/user-add-listing.php">Sell Your Car</a></li>
                     <li><a href="./inventory-list.php">Buy a Car</a></li>
                     <li><a href="./index.php?#reviews">Reviews</a></li>

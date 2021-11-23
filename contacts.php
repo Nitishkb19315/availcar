@@ -49,13 +49,13 @@
                     <div class="col-md-6 col-lg-4">
                         <div class="b-contacts"><i class="ic icon-call-end bg-primary"></i>
                             <div class="b-contacts__title">Phone</div>
-                            <div class="b-contacts__info"><a href="tel:#"><?php echo($headOfficeDetails['first_phone_no']) ?></a><br><?php echo($headOfficeDetails['second_phone_no']) ?></div>
+                            <div class="b-contacts__info"><a href="tel:+91<?php echo($headOfficeDetails['first_phone_no']) ?>">+91 <?php echo($headOfficeDetails['first_phone_no']) ?></a><br><a href="tel:+91 <?php echo($headOfficeDetails['second_phone_no']) ?>">+91 <?php echo($headOfficeDetails['second_phone_no']) ?></a></div>
                         </div>
                     </div>
                     <div class="col-md-6 col-lg-4">
                         <div class="b-contacts"><i class="ic icon-envelope"></i>
                             <div class="b-contacts__title">Email</div>
-                            <div class="b-contacts__info"><?php echo($headOfficeDetails['first_email']) ?><br><?php echo($headOfficeDetails['second_email']) ?></div>
+                            <div class="b-contacts__info"><a href="mailto:<?php echo($headOfficeDetails['first_email']); ?>"><?php echo($headOfficeDetails['first_email']) ?></a><br><a href="mailto:<?php echo($headOfficeDetails['second_email']); ?>"><?php echo($headOfficeDetails['second_email']) ?></a></div>
                         </div>
                     </div>
                 </div>

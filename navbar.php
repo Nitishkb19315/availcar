@@ -10,7 +10,7 @@
 
             <ul class="navbar-nav">
                 <li class="nav-item active"><a class="nav-link" href="index.php">Home<span class="sr-only">(current)</span></a></li>
-                <li class="nav-item "><a class="nav-link">Inventory</a>
+                <!-- <li class="nav-item "><a class="nav-link">Inventory</a>
 
 
                     <ul>
@@ -20,11 +20,11 @@
                     </ul>
 
 
-                </li>
+                </li> -->
                 <li class="nav-item"><a class="nav-link" href="inventory-list.php">Search</a></li>
                 <li class="nav-item"><a class="nav-link" href="about.php">About</a></li>
 
-                <li class="nav-item "><a class="nav-link" href="#">Pages</a>
+                <!-- <li class="nav-item "><a class="nav-link" href="#">Pages</a>
 
                     <ul>
                         <li><a class="dropdown-item" href="typography.php">Typography</a></li>
@@ -37,7 +37,7 @@
                         <li><a class="dropdown-item" href="blog-main.php">Blog main</a></li>
                         <li><a class="dropdown-item" href="blog-post.php">Blog post</a></li>
                     </ul>
-                </li>
+                </li> -->
                 <li class="nav-item"><a class="nav-link" href="contacts.php">Contact</a></li>
             </ul>
 

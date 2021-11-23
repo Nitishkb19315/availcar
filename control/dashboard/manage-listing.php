@@ -136,7 +136,7 @@
                         </div>
                     </div>
                 </div> -->
-                <div class="    ">
+                <div >
                     <div class="table-wrapper__content table-collapse scrollbar-thin scrollbar-visible" data-simplebar>
                         <table class="table table--lines" id="table">
                             <colgroup>

@@ -107,6 +107,10 @@
 				// $errorMsg .="<p class='alert alert-danger'><i class='fa fa-times'></i> Unmatched Password";
 				$errorMsg .= "Failed";
 				break;
+			case 22:
+				// $errorMsg .="<p class='alert alert-danger'><i class='fa fa-times'></i> Unmatched Password";
+				$errorMsg .= "User has Reached it's max listing.";
+				break;
 		}
 		$errorMsg .= "</p>";
 		return $errorMsg;
@@ -245,521 +249,6 @@
 
 
 
-
-	function add_blog($dates, $title, $detail, $filename)
-	{
-		global $con;
-		$query = "INSERT INTO ";
-		$query .= "blog ";
-		$query .= "(dates,title,detail,filename) ";
-		$query .= "VALUES ( ";
-		$query .= "'$dates','$title','$detail','$filename' ";
-		$query .= ");";
-		$result = mysqli_query($con, $query);
-		confirm_query($result);
-		return true;
-	}
-	function get_blog()
-	{
-		global $con;
-		$query = "SELECT * FROM";
-		$query .= " blog";
-		$query .= " ORDER BY id DESC";
-		$result = mysqli_query($con, $query);
-		confirm_query($result, $query);
-		return $result;
-	}
-	function get_blog_byid($id)
-	{
-		global $con;
-		$query = "SELECT * FROM";
-		$query .= " blog where id=$id";
-		$query .= " ORDER BY id DESC";
-		$result = mysqli_query($con, $query);
-		confirm_query($result, $query);
-		return $result;
-	}
-	function get_blog_limit3()
-	{
-		global $con;
-		$query = "SELECT * FROM";
-		$query .= " blog";
-		$query .= " ORDER BY id DESC LIMIT 3";
-		$result = mysqli_query($con, $query);
-		confirm_query($result, $query);
-		return $result;
-	}
-	function getblogID($id)
-	{
-		global $con;
-		$query = "SELECT * FROM ";
-		$query .= " blog";
-		$query .= " WHERE id=$id";
-		$result = mysqli_query($con, $query);
-		confirm_query($result);
-		return $result;
-	}
-	function Deleteblog($diretory, $filename, $id)
-	{
-		global $con;
-		if (delete_photo($diretory, $filename)) {
-			$query = "DELETE FROM ";
-			$query .= "blog ";
-			$query .= "WHERE ";
-			$query .= "id= {$id} ";
-			$query .= "LIMIT 1";
-			$result = mysqli_query($con, $query);
-			confirm_query($result);
-			if (mysqli_affected_rows() > 0) {
-				return TRUE;
-			} else {
-				return FALSE;
-			}
-		}
-	}
-	/*  */
-	function get_news()
-	{
-		global $con;
-		$query = "SELECT * FROM";
-		$query .= " news";
-		$query .= " ORDER BY id DESC";
-		$result = mysqli_query($con, $query);
-		confirm_query($result, $query);
-		return $result;
-	}
-	function get_news_limit3()
-	{
-		global $con;
-		$query = "SELECT * FROM";
-		$query .= " news";
-		$query .= " ORDER BY id DESC LIMIT 3";
-		$result = mysqli_query($con, $query);
-		confirm_query($result, $query);
-		return $result;
-	}
-	function add_news($dates, $title, $detail, $filename)
-	{
-		global $con;
-		$query = "INSERT INTO ";
-		$query .= "news ";
-		$query .= "(dates,title,detail,filename) ";
-		$query .= "VALUES ( ";
-		$query .= "'$dates','$title','$detail','$filename' ";
-		$query .= ");";
-		$result = mysqli_query($con, $query);
-		confirm_query($result);
-		return true;
-	}
-	function getnewsID($id)
-	{
-		global $con;
-		$query = "SELECT * FROM ";
-		$query .= " news";
-		$query .= " WHERE id=$id";
-		$result = mysqli_query($con, $query);
-		confirm_query($result);
-		return $result;
-	}
-	function Deletenews($diretory, $filename, $id)
-	{
-		global $con;
-		if (delete_photo($diretory, $filename)) {
-			$query = "DELETE FROM ";
-			$query .= "news ";
-			$query .= "WHERE ";
-			$query .= "id= {$id} ";
-			$query .= "LIMIT 1";
-			$result = mysqli_query($con, $query);
-			confirm_query($result);
-			if (mysqli_affected_rows() > 0) {
-				return TRUE;
-			} else {
-				return FALSE;
-			}
-		}
-	}
-
-
-
-	/********************* gallery Category Function*************************/
-	function add_cate($category)
-	{
-		global $con;
-		$query = "INSERT INTO ";
-		$query .= "category ";
-		$query .= "(category) ";
-		$query .= "VALUES ( ";
-		$query .= "'$category' ";
-		$query .= ");";
-		$result = mysqli_query($con, $query);
-		confirm_query($result);
-		return true;
-	}
-	function ListCate()
-	{
-		global $con;
-		$query = "SELECT * FROM ";
-		$query .= "category ORDER BY id DESC";
-		$result = mysqli_query($con, $query);
-		confirm_query($result);
-		return $result;
-	}
-	function deletecate($id)
-	{
-		global $con;
-		$query = "DELETE FROM ";
-		$query .= "category ";
-		$query .= "WHERE ";
-		$query .= "id= {$id} ";
-		$query .= "LIMIT 1";
-		$result = mysqli_query($con, $query);
-		confirm_query($result);
-		if (mysqli_affected_rows() > 0) {
-			return TRUE;
-		} else {
-			return FALSE;
-		}
-	}
-
-
-
-
-	/**********************Gallery Function***********************************/
-	function addGallery($category, $filename)
-	{
-		global $con;
-		$query = "INSERT INTO ";
-		$query .= "gallery ";
-		$query .= "(category,filename) ";
-		$query .= "VALUES ( ";
-		$query .= " '$category','$filename' ";
-		$query .= ");";
-		$result = mysqli_query($con, $query);
-		confirm_query($result);
-		return true;
-	}
-	function List_Gallery()
-	{
-		global $con;
-		$query = "SELECT category.category,gallery.filename,gallery.id FROM ";
-		$query .= "category,gallery";
-		$query .= " WHERE category.id=gallery.category ORDER BY id DESC";
-		$result = mysqli_query($con, $query);
-		confirm_query($result);
-		return $result;
-	}
-	function List_Gallery_limit6()
-	{
-		global $con;
-		$query = "SELECT * FROM ";
-		$query .= "gallery ";
-		$query .= " ORDER BY id DESC LIMIT 6";
-		$result = mysqli_query($con, $query);
-		confirm_query($result);
-		return $result;
-	}
-	function List_Gallery_bycate($id)
-	{
-		global $con;
-		$query = "SELECT * FROM ";
-		$query .= "gallery where category='$id'";
-		$query .= " ORDER BY id DESC";
-		$result = mysqli_query($con, $query);
-		confirm_query($result);
-		return $result;
-	}
-	function List_allGallery()
-	{
-		global $con;
-		$query = "SELECT * FROM ";
-		$query .= "gallery";
-		$query .= " ORDER BY id DESC LIMIT 8";
-		$result = mysqli_query($con, $query);
-		confirm_query($result);
-		return $result;
-	}
-	function getgalleryID($id)
-	{
-		global $con;
-		$query = "SELECT * FROM ";
-		$query .= " gallery";
-		$query .= " WHERE id=$id";
-		$result = mysqli_query($con, $query);
-		confirm_query($result);
-		return $result;
-	}
-	function getgallerycateID($cate)
-	{
-		global $con;
-		$query = "SELECT * FROM ";
-		$query .= " gallery";
-		$query .= " WHERE cate=$cate";
-		$result = mysqli_query($con, $query);
-		confirm_query($result);
-		return $result;
-	}
-	function DeleteGallery($diretory, $filename, $id)
-	{
-		global $con;
-		if (delete_photo($diretory, $filename)) {
-			$query = "DELETE FROM ";
-			$query .= "gallery ";
-			$query .= "WHERE ";
-			$query .= "id= {$id} ";
-			$query .= "LIMIT 1";
-			$result = mysqli_query($con, $query);
-			confirm_query($result);
-			if (mysqli_affected_rows($con) > 0) {
-				return TRUE;
-			} else {
-				return FALSE;
-			}
-		}
-	}
-
-	/********************* Video Function*************************/
-	function add_video($title, $link)
-	{
-		global $con;
-		$query = "INSERT INTO ";
-		$query .= "video ";
-		$query .= "(title,link) ";
-		$query .= "VALUES ( ";
-		$query .= "'$title','$link' ";
-		$query .= ");";
-		$result = mysqli_query($con, $query);
-		confirm_query($result);
-		return true;
-	}
-
-	/*function ListVideo(){
-	  global $con;
-		  $query= "SELECT videocate.category,video.title,video.link,video.id FROM ";
-		  $query .="videocate,video";
-		  $query .=" WHERE videocate.id=video.category";
-		  $result = mysqli_query($con,$query);
-		  confirm_query($result);
-		  return $result;
-	  }*/
-	function ListVideo()
-	{
-		global $con;
-		$query = "SELECT * FROM ";
-		$query .= "video ORDER BY id DESC";
-		$result = mysqli_query($con, $query);
-		confirm_query($result);
-		return $result;
-	}
-	/*function ListVideo_bycate($id){
-		  global $con;
-		  $query= "SELECT * FROM ";
-		  $query .="video where category='$id' ORDER BY id DESC";
-		  $result = mysqli_query($con,$query);
-		 confirm_query($result);
-		 return $result;
-
-	  }*/
-	function deletevideo($id)
-	{
-		global $con;
-		$query = "DELETE FROM ";
-		$query .= "video ";
-		$query .= "WHERE ";
-		$query .= "id= {$id} ";
-		$query .= "LIMIT 1";
-		$result = mysqli_query($con, $query);
-		confirm_query($result);
-		if (mysqli_affected_rows() > 0) {
-			return TRUE;
-		} else {
-			return FALSE;
-		}
-	}
-
-	/********************* video Category Function*************************/
-	/*function add_vcate($category){
-		global $con;
-		$query = "INSERT INTO ";
-		$query .="videocate ";
-		$query .="(category) ";
-		$query .="VALUES ( ";
-		$query .="'$category' ";
-		$query .= ");";
-		$result = mysqli_query($con,$query);
-		confirm_query($result);
-		return true;
-	}
-	function ListvCate(){
-		  global $con;
-		  $query= "SELECT * FROM ";
-		  $query .="videocate ORDER BY id DESC";
-		  $result = mysqli_query($con,$query);
-		 confirm_query($result);
-		 return $result;
-
-	  }
-	  function deletevcate($id){
-		global $con;
-		$query = "DELETE FROM ";
-		$query .= "videocate ";
-		$query .= "WHERE ";
-		$query .= "id= {$id} ";
-		$query .= "LIMIT 1";
-		$result = mysqli_query($con,$query);
-		confirm_query($result);
-		if(mysqli_affected_rows()>0){
-			return TRUE;
-		}
-		else {
-			return FALSE;
-		}
-	}*/
-
-	/***********************testimonial function *********************/
-	function add_testimonial($name, $detail, $filename)
-	{
-		global $con;
-		$query = "INSERT INTO ";
-		$query .= "testimonial ";
-		$query .= "(name,detail,filename) ";
-		$query .= "VALUES ( ";
-		$query .= "'$name','$detail','$filename' ";
-		$query .= ");";
-		$result = mysqli_query($con, $query);
-		confirm_query($result);
-		return true;
-	}
-	function get_testimonial()
-	{
-		global $con;
-		$query = "SELECT * FROM";
-		$query .= " testimonial";
-		$query .= " ORDER BY id DESC";
-		$result = mysqli_query($con, $query);
-		confirm_query($result, $query);
-		return $result;
-	}
-	function gettestimonialID($id)
-	{
-		global $con;
-		$query = "SELECT * FROM ";
-		$query .= " testimonial";
-		$query .= " WHERE id=$id";
-		$result = mysqli_query($con, $query);
-		confirm_query($result);
-		return $result;
-	}
-	function DeleteTestimonial($diretory, $filename, $id)
-	{
-		global $con;
-		if (delete_photo($diretory, $filename)) {
-			$query = "DELETE FROM ";
-			$query .= "testimonial ";
-			$query .= "WHERE ";
-			$query .= "id= {$id} ";
-			$query .= "LIMIT 1";
-			$result = mysqli_query($con, $query);
-			confirm_query($result);
-			if (mysqli_affected_rows() > 0) {
-				return TRUE;
-			} else {
-				return FALSE;
-			}
-		}
-	}
-	/********************* Reg Function*************************/
-	function add_reg($name, $email, $mobile, $passwords, $course)
-	{
-		global $con;
-		$query = "INSERT INTO ";
-		$query .= "registration ";
-		$query .= "(name,email,mobile,passwords,course) ";
-		$query .= "VALUES ( ";
-		$query .= "'$name','$email','$mobile','$passwords','$course' ";
-		$query .= ");";
-		$result = mysqli_query($con, $query);
-		confirm_query($result);
-		return true;
-	}
-	function ListReg()
-	{
-		global $con;
-		$query = "SELECT * FROM ";
-		$query .= "registration ORDER BY id DESC";
-		$result = mysqli_query($con, $query);
-		confirm_query($result);
-		return $result;
-	}
-	function deletereg($id)
-	{
-		global $con;
-		$query = "DELETE FROM ";
-		$query .= "registration ";
-		$query .= "WHERE ";
-		$query .= "id= {$id} ";
-		$query .= "LIMIT 1";
-		$result = mysqli_query($con, $query);
-		confirm_query($result);
-		if (mysqli_affected_rows() > 0) {
-			return TRUE;
-		} else {
-			return FALSE;
-		}
-	}
-
-	/***********************Story function *********************/
-	function add_story($title, $detail, $filename)
-	{
-		global $con;
-		$query = "INSERT INTO ";
-		$query .= "story ";
-		$query .= "(title,detail,filename) ";
-		$query .= "VALUES ( ";
-		$query .= "'$title','$detail','$filename' ";
-		$query .= ");";
-		$result = mysqli_query($con, $query);
-		confirm_query($result);
-		return true;
-	}
-	function get_story()
-	{
-		global $con;
-		$query = "SELECT * FROM";
-		$query .= " story";
-		$query .= " ORDER BY id DESC";
-		$result = mysqli_query($con, $query);
-		confirm_query($result, $query);
-		return $result;
-	}
-	function getstoryID($id)
-	{
-		global $con;
-		$query = "SELECT * FROM ";
-		$query .= " story";
-		$query .= " WHERE id=$id";
-		$result = mysqli_query($con, $query);
-		confirm_query($result);
-		return $result;
-	}
-	function Deletestory($diretory, $filename, $id)
-	{
-		global $con;
-		if (delete_photo($diretory, $filename)) {
-			$query = "DELETE FROM ";
-			$query .= "story ";
-			$query .= "WHERE ";
-			$query .= "id= {$id} ";
-			$query .= "LIMIT 1";
-			$result = mysqli_query($con, $query);
-			confirm_query($result);
-			if (mysqli_affected_rows() > 0) {
-				return TRUE;
-			} else {
-				return FALSE;
-			}
-		}
-	}
 
 
 	// *****************search list*******************
@@ -950,14 +439,14 @@
 		confirm_query($result);
 		return check_existence_model($model, $result);
 	}
-	function check_variant($model,$variant)
+	function check_variant($model, $variant)
 	{
 		global $con;
 		$query = "SELECT * FROM";
 		$query .= " `car_variant`";
 		$result = mysqli_query($con, $query);
 		confirm_query($result);
-		return check_existence_variant($model,$variant, $result);
+		return check_existence_variant($model, $variant, $result);
 	}
 	function check_feature($feature)
 	{
@@ -981,13 +470,13 @@
 		}
 		return $status;
 	}
-	function check_existence_variant($model ,$variant, $result)
+	function check_existence_variant($model, $variant, $result)
 	{
 		$status = true;
 		if (mysqli_num_rows($result) > 0) {
 			while ($row = mysqli_fetch_assoc($result)) {
 				if (strtoupper($variant)  ==  strtoupper($row['variant']) && strtoupper($model)  ==  strtoupper($row['model_id'])) {
-					$status = false ;
+					$status = false;
 					break;
 				}
 			}
@@ -1146,16 +635,20 @@
 		}
 		return $status;
 	}
-	function addPackage($package, $price, $listing)
+	function addPackage($id, $package, $price, $listing)
 	{
 		global $con;
 		$query = "INSERT INTO ";
 		$query .= " `package` ";
-		$query .= " (`package_name`,`package_price`,`package_listing`) ";
-		$query .= " VALUES ('$package','$price','$listing')";
+		$query .= " (`id`,`package_name`,`package_price`,`package_listing`) ";
+		$query .= " VALUES ($id,'$package','$price','$listing')";
 		$result = mysqli_query($con, $query);
 		confirm_query($result);
-		return $result;
+		if(mysqli_affected_rows($con)>0){
+			return true;
+		}else{
+			return false;
+		}
 	}
 	function get_package_list()
 	{
@@ -1217,7 +710,7 @@
 
 		if (addImages($unique_id, $imageArray)) {
 			return true;
-		}else {
+		} else {
 			return false;
 		}
 	}
@@ -1253,7 +746,7 @@
 		confirm_query($result);
 		return $result;
 	}
-	function get_approved_inventory_listing_list($page_first_result,$item_per_page)
+	function get_approved_inventory_listing_list($page_first_result, $item_per_page)
 	{
 		global $con;
 		$query = "SELECT listing.id AS id,`availabilty`,username,make.make AS make,car_model.model AS model,car_variant.variant AS variant,model_year,interior_color,exterior_color,transmission, fuel, sale_price, market_price,main_image,`status`,feature_state,users_listings.approval as `approval`,users_listings.priority	 as priority,visibility,description	
@@ -1307,24 +800,26 @@
 			return FALSE;
 		}
 	}
-	function get_listing_approve_status($id){
+	function get_listing_approve_status($id)
+	{
 		global $con;
 		$query = "SELECT approval FROM `users_listings` WHERE listing_id = $id;";
 		$result = mysqli_query($con, $query);
 		confirm_query($result);
-		if(mysqli_num_rows($result) > 0){
+		if (mysqli_num_rows($result) > 0) {
 			$result = mysqli_fetch_array($result);
 			return $result['approval'];
 		}
 	}
-	function change_listing_approval_status($id,$status){
+	function change_listing_approval_status($id, $status)
+	{
 		global $con;
 		$query = "UPDATE users_listings SET approval='$status' WHERE listing_id = $id";
 		$result = mysqli_query($con, $query);
 		confirm_query($result);
-		if(mysqli_affected_rows($con)>0){
+		if (mysqli_affected_rows($con) > 0) {
 			return true;
-		}else{
+		} else {
 			return false;
 		}
 	}
@@ -1362,7 +857,7 @@
 		global $con;
 		if (delete_photo($diretory, $filename) && empty($images[0]) ? true  :  delete_additional_image($diretory, $images)) {
 			if (!empty($images[0])) {
-				delete_additional_images($images, $id);
+				delete_additional_images($id);
 			}
 			$query = "DELETE FROM ";
 			$query .= "listing ";
@@ -1387,7 +882,7 @@
 			}
 		}
 	}
-	function delete_additional_images($images, $id)
+	function delete_additional_images($id)
 	{
 		global $con;
 		$query = "DELETE FROM ";
@@ -1452,22 +947,22 @@
 			return "fail";
 		}
 	}
-	function change_listing_visibility($id,$status)
+	function change_listing_visibility($id, $status)
 	{
 		global $con;
-		$status= trim($status);
+		$status = trim($status);
 		$return_status = "Public";
-		if($status == "Private"){
+		if ($status == "Private") {
 			$query = "UPDATE `users_listings` SET `visibility` = 'Public' WHERE `listing_id` = $id;";
 			$return_status  = "Public";
 			$result = mysqli_query($con, $query);
-		}else{
+		} else {
 			$query = "UPDATE `users_listings` SET `visibility` = 'Private' WHERE `listing_id` = $id;";
 			$return_status  = "Private";
 			$result = mysqli_query($con, $query);
 		}
-		
-		
+
+
 		confirm_query($result);
 		if (mysqli_affected_rows($con) > 0) {
 			return  $return_status;
@@ -1475,14 +970,39 @@
 			return $return_status;
 		}
 	}
-	function get_all_pending_listings(){
+	function get_all_pending_listings()
+	{
 		global $con;
 		$query = "SELECT listing.id AS id,`availabilty`,username,make.make AS make,car_model.model AS model,car_variant.variant AS variant,model_year,interior_color,exterior_color,transmission, fuel, sale_price, market_price,main_image,`status`,feature_state,users_listings.approval as `approval`,visibility FROM `listing`,car_model,car_variant,make, users_listings WHERE listing.make_id = make.id AND listing.model_id = car_model.model_id AND listing.variant_id = car_variant.variant_id AND users_listings.listing_id = listing.id AND users_listings.approval='Pending';";
 		$result = mysqli_query($con, $query);
 		confirm_query($result);
-		if(mysqli_num_rows($result) > 0){
+		if (mysqli_num_rows($result) > 0) {
 			return $result;
-		}else{
+		} else {
+			return $result;
+		}
+	}
+	function get_user_pending_listings($id)
+	{
+		global $con;
+		$query = "SELECT listing.id AS id,
+					`availabilty`,username,make.make AS make,
+					car_model.model AS model,car_variant.variant AS variant,
+					model_year,interior_color,exterior_color,transmission, 
+					fuel, sale_price, market_price,main_image,`status`,
+					feature_state,users_listings.approval as `approval`,visibility 
+					FROM `listing`,car_model,car_variant,make, users_listings 
+					WHERE listing.make_id = make.id AND 
+					listing.model_id = car_model.model_id AND 
+					listing.variant_id = car_variant.variant_id AND 
+					users_listings.listing_id = listing.id AND 
+					users_listings.user_id = $id AND 
+					users_listings.approval='Pending';";
+		$result = mysqli_query($con, $query);
+		confirm_query($result);
+		if (mysqli_num_rows($result) > 0) {
+			return $result;
+		} else {
 			return $result;
 		}
 	}
@@ -1543,7 +1063,7 @@
 			return $result;
 		}
 	}
-	function add_user($_data, $filename, $unique_id, $user_id)
+	function add_user($_data, $filename, $unique_id, $user_id, $package="1")
 	{
 		global $con;
 		$fname = $_data['fname'];
@@ -1551,12 +1071,33 @@
 		$gender = $_data['gender'];
 		$country = $_data['country'];
 		$city = $_data['city'];
-		$address = $_data['address'];
+		$address = mysql_prep($_data['address']);
 		$zip_code = mysql_prep($_data['zip_code']);
 		$query = "INSERT INTO `user_profile` ";
 		$query .= "(`id`, `user_id`, `fname`, `lname`, `gender`, `profile_image`, `country`, `city`, `address`, `zip_code`,  `pakage`)";
 		$query .= "VALUES( ";
-		$query .= "$unique_id, $user_id, '$fname', '$lname' ,'$gender', '$filename', '$country', '$city', '$address', '$zip_code', 1)";
+		$query .= "$unique_id, $user_id, '$fname', '$lname' ,'$gender', '$filename', '$country', '$city', '$address', '$zip_code', '$package')";
+		$result = mysqli_query($con, $query);
+		confirm_query($result);
+		
+		if (mysqli_affected_rows($con) > 0) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	function get_pending_user_list()
+	{
+		global $con;
+		$query = "SELECT users.id AS id,username,fname,lname,email,account_status,country,city,profile_image,date_of_signup,address,mobile_no FROM `users`,`user_profile` WHERE users.id = user_profile.user_id AND users.account_status = 0;";
+		$result = mysqli_query($con, $query);
+		confirm_query($result);
+		return $result;
+	}
+	function approve_all_users()
+	{
+		global $con;
+		$query = "UPDATE `users` SET `account_status`='1' WHERE `account_status`='0';";
 		$result = mysqli_query($con, $query);
 		confirm_query($result);
 		if (mysqli_affected_rows($con) > 0) {
@@ -1651,6 +1192,17 @@
 			return false;
 		}
 	}
+	function get_user_image($id)
+	{
+		global $con;
+		$query = "SELECT profile_image FROM user_profile WHERE `user_id`= $id;";
+		$result = mysqli_query($con, $query);
+		confirm_query($result);
+		if (mysqli_num_rows($result) > 0) {
+			$image = mysqli_fetch_array($result);
+			return  $image['profile_image'];
+		}
+	}
 	function delete_user($id)
 	{
 		global $con;
@@ -1675,7 +1227,7 @@
 		$result = mysqli_query($con, $query);
 		confirm_query($result);
 		if (mysqli_num_rows($result) > 0) {
-			$result=mysqli_fetch_assoc($result);
+			$result = mysqli_fetch_assoc($result);
 			return $result['max'];
 		}
 	}
@@ -1690,9 +1242,9 @@
 			$result = mysqli_query($con, $query);
 			confirm_query($result);
 		}
-		if(mysqli_affected_rows($con)> 0){
+		if (mysqli_affected_rows($con) > 0) {
 			return true;
-		}else{
+		} else {
 			return false;
 		}
 	}
@@ -1702,278 +1254,407 @@
 		$query = "SELECT * FROM users WHERE account_status=1;";
 		$result = mysqli_query($con, $query);
 		confirm_query($result);
-		if(mysqli_num_rows($result) > 0){
+		if (mysqli_num_rows($result) > 0) {
 			return $result;
-		}else{
+		} else {
 			return false;
 		}
-
 	}
-	function get_username($id){
+	function get_username($id)
+	{
 		global $con;
 		$query = "SELECT username FROM users WHERE id = $id";
 		$result = mysqli_query($con, $query);
 		confirm_query($result);
-		if(mysqli_num_rows($result) > 0){
+		if (mysqli_num_rows($result) > 0) {
 			$result = mysqli_fetch_array($result);
 			$username = $result['username'];
 			return $username;
 		}
 	}
-	function update_headOffice_first_email($value){
+	function update_headOffice_first_email($value)
+	{
 		global $con;
 		$query = "UPDATE `head_office_details` ";
 		$query .= " SET `first_email`='$value'";
 		$result = mysqli_query($con, $query);
 		confirm_query($result);
-		if(mysqli_affected_rows($con)>0){
+		if (mysqli_affected_rows($con) > 0) {
 			return true;
-		}else{
+		} else {
 			return false;
 		}
 	}
-	function update_headOffice_second_email($value){
+	function update_headOffice_second_email($value)
+	{
 		global $con;
 		$query = "UPDATE `head_office_details` ";
 		$query .= " SET `second_email`='$value'";
 		$result = mysqli_query($con, $query);
 		confirm_query($result);
-		if(mysqli_affected_rows($con)>0){
+		if (mysqli_affected_rows($con) > 0) {
 			return true;
-		}else{
+		} else {
 			return false;
 		}
 	}
-	function update_headOffice_first_mobile_no($value){
+	function update_headOffice_first_mobile_no($value)
+	{
 		global $con;
 		$query = "UPDATE `head_office_details` ";
 		$query .= " SET `first_phone_no`='$value'";
 		$result = mysqli_query($con, $query);
 		confirm_query($result);
-		if(mysqli_affected_rows($con)>0){
+		if (mysqli_affected_rows($con) > 0) {
 			return true;
-		}else{
+		} else {
 			return false;
 		}
 	}
-	function update_headOffice_second_mobile_no($value){
+	function update_headOffice_second_mobile_no($value)
+	{
 		global $con;
 		$query = "UPDATE `head_office_details` ";
 		$query .= " SET `second_phone_no`='$value'";
 		$result = mysqli_query($con, $query);
 		confirm_query($result);
-		if(mysqli_affected_rows($con)>0){
+		if (mysqli_affected_rows($con) > 0) {
 			return true;
-		}else{
+		} else {
 			return false;
 		}
 	}
-	function update_headOffice_address($value){
+	function update_headOffice_address($value)
+	{
 		global $con;
 		$query = "UPDATE `head_office_details` ";
 		$query .= " SET `address`='$value'";
 		$result = mysqli_query($con, $query);
 		confirm_query($result);
-		if(mysqli_affected_rows($con)>0){
+		if (mysqli_affected_rows($con) > 0) {
 			return true;
-		}else{
+		} else {
 			return false;
 		}
 	}
-	function get_head_office_details(){
+	function get_head_office_details()
+	{
 		global $con;
 		$query = "SELECT * FROM `head_office_details`";
 		$result = mysqli_query($con, $query);
 		confirm_query($result);
-		if(mysqli_num_rows($result)>0){
+		if (mysqli_num_rows($result) > 0) {
 			return mysqli_fetch_array($result);
-		}else{
+		} else {
 			return false;
 		}
 	}
-	function addBranch($phone_no, $email, $name, $address){
+	function addBranch($phone_no, $email, $name, $address)
+	{
 		global $con;
 		$query = "INSERT INTO `branch_details` ";
 		$query .= "(`name`,`email`,`phone_no`,`address`) VALUES( ";
 		$query .= " '$name','$email','$phone_no','$address')";
 		$result = mysqli_query($con, $query);
 		confirm_query($result);
-		if(mysqli_affected_rows($con)>0){
+		if (mysqli_affected_rows($con) > 0) {
 			return true;
-		}else{
+		} else {
 			return false;
 		}
 	}
-	function get_branch_list(){
+	function get_branch_list()
+	{
 		global $con;
 		$query = "SELECT * FROM `branch_details`";
 		$result = mysqli_query($con, $query);
 		confirm_query($result);
-		if(mysqli_num_rows($result)>0){
+		if (mysqli_num_rows($result) > 0) {
 			return $result;
-		}else{
+		} else {
 			return false;
 		}
 	}
-	function delete_branch($id){
+	function delete_branch($id)
+	{
 		global $con;
 		$query = "DELETE FROM `branch_details` WHERE ";
 		$query .= "`id`=$id ";
 		$result = mysqli_query($con, $query);
 		confirm_query($result);
-		if(mysqli_affected_rows($con)>0){
+		if (mysqli_affected_rows($con) > 0) {
 			return true;
-		}else{
+		} else {
 			return false;
 		}
 	}
 
 	// ***************************** fort-end  index.php **************************
-	function get_inventory_list_with_limit($limit){
+	function get_inventory_list_with_limit($limit)
+	{
 		global $con;
 		$query = "SELECT listing.id AS id,`availabilty`,username,make.make AS make,car_model.model AS model,car_variant.variant AS variant,model_year,interior_color,exterior_color,transmission, fuel, sale_price, market_price,main_image,`status`,feature_state,users_listings.approval as `approval`,users_listings.priority	 as priority,visibility,description	FROM `listing`,car_model,car_variant,make, users_listings 
 		WHERE listing.make_id = make.id AND listing.model_id = car_model.model_id AND listing.variant_id = car_variant.variant_id AND users_listings.listing_id = listing.id AND users_listings.approval = 'Approved'
 		ORDER BY listing.id DESC LIMIT $limit;";
 		$result = mysqli_query($con, $query);
 		confirm_query($result);
-		if(mysqli_num_rows($result) > 0){
+		if (mysqli_num_rows($result) > 0) {
 			return $result;
-		}else{
+		} else {
 			return $result;
 		}
 	}
-	function addReview($id,$name,$review,$type ,$filename){
+	function addReview($id, $name, $review, $type, $filename)
+	{
 		global $con;
 		$query = "INSERT INTO `reviews` ";
 		$query .= " VALUES($id,'$name','$type','$filename','$review')";
 		$result = mysqli_query($con, $query);
 		confirm_query($result);
-		if(mysqli_affected_rows($con) > 0){
+		if (mysqli_affected_rows($con) > 0) {
 			return true;
-		}else{
+		} else {
 			return false;
 		}
 	}
-	function get_review_list(){
+	function get_review_list()
+	{
 		global $con;
 		$query = "SELECT * FROM `reviews`";
 		$result = mysqli_query($con, $query);
 		confirm_query($result);
-		if(mysqli_num_rows($result) > 0){
+		if (mysqli_num_rows($result) > 0) {
 			return $result;
-		}else{
+		} else {
 			return false;
 		}
 	}
-	function deleteReview($id){
+	function deleteReview($id)
+	{
 		global $con;
 		$query = "DELETE FROM `reviews` WHERE id = $id";
 		$result = mysqli_query($con, $query);
 		confirm_query($result);
-		if(mysqli_affected_rows($con)>0){
+		if (mysqli_affected_rows($con) > 0) {
 			return true;
-		}else{
+		} else {
 			return false;
 		}
-
 	}
-	function get_vehicle_details($id){
+	function get_vehicle_details($id)
+	{
 		global $con;
 		$query = "SELECT l.*,make.make,car_model.model,car_variant.variant ";
 		$query .= "FROM `listing` AS l,`make`,`car_model`,`car_variant` ";
 		$query .= "WHERE make.id = l.make_id AND car_model.model_id = l.model_id AND car_variant.variant_id = l.variant_id AND l.id =$id ;";
 		$result = mysqli_query($con, $query);
 		confirm_query($result);
-		if(mysqli_num_rows($result) > 0){
+		if (mysqli_num_rows($result) > 0) {
 			return $result;
-		}else{
+		} else {
 			return false;
 		}
 	}
-	function get_feature_name($id){
+	function get_feature_name($id)
+	{
 		global $con;
 		$query = "SELECT * FROM `car_feature` WHERE id IN ($id) ORDER BY position ASC";
 		$result = mysqli_query($con, $query);
 		confirm_query($result);
-		if(mysqli_num_rows($result) > 0){
+		if (mysqli_num_rows($result) > 0) {
 			return $result;
-		}else{
+		} else {
 			return false;
 		}
-	}	
-	function get_agent_details($id){
+	}
+	function get_agent_details($id)
+	{
 		global $con;
 		$query = "SELECT users.id AS id, users.email AS email,visibility,username,mobile_no,user_profile.fname AS fname,user_profile.lname AS lname,user_profile.profile_image AS image ";
 		$query .= "FROM `users_listings`,`users`,`user_profile`  ";
 		$query .= "WHERE users.id = users_listings.user_id AND users.id = user_profile.user_id AND users_listings.listing_id = $id; ";
 		$result = mysqli_query($con, $query);
-		if(mysqli_num_rows($result) > 0){
+		if (mysqli_num_rows($result) > 0) {
 			return $result;
-		}else{
+		} else {
 			return false;
 		}
 	}
-	function get_searched_listing_list($data,$page_first_result,$item_per_page){
+	function get_searched_listing_list($data, $page_first_result, $item_per_page)
+	{
 		global $con;
 		$query = "SELECT listing.id AS id,`availabilty`,username,make.make AS make,car_model.model AS model,car_variant.variant AS variant,model_year,interior_color,exterior_color,transmission, fuel, sale_price, market_price,main_image,`status`,feature_state,users_listings.approval as `approval`,users_listings.priority	 as priority,visibility,description	
 					FROM `listing`,car_model,car_variant,make, users_listings 
 					WHERE listing.make_id = make.id AND listing.model_id = car_model.model_id AND listing.variant_id = car_variant.variant_id AND users_listings.listing_id = listing.id AND users_listings.approval = 'Approved' ";
-		foreach ($data as $key => $value){
-			if($key =='market_price' || $key =='max_sale_price' || $key =='min_sale_price' || $key =='pg' || $key == 'submit'){
+		foreach ($data as $key => $value) {
+			if ($key == 'market_price' || $key == 'max_sale_price' || $key == 'min_sale_price' || $key == 'pg' || $key == 'submit') {
 				continue;
 			}
 			$query .= "AND listing.$key = '$value' ";
 		}
-		if(isset($_GET['max_sale_price']) || isset($_GET['min_sale_price'])){
+		if (isset($_GET['max_sale_price']) || isset($_GET['min_sale_price'])) {
 			$price = 999999999999;
 			$min_price = 0;
-			if(isset($_GET['min_sale_price']) && !empty($_GET['min_sale_price'])){
+			if (isset($_GET['min_sale_price']) && !empty($_GET['min_sale_price'])) {
 				$min_price = $_GET['min_sale_price'];
-				
 			}
-			if(isset($_GET['max_sale_price']) && !empty($_GET['max_sale_price'])){
+			if (isset($_GET['max_sale_price']) && !empty($_GET['max_sale_price'])) {
 				$price = $_GET['max_sale_price'];
 			}
 			$query .= "AND sale_price BETWEEN $min_price AND $price ";
 		}
-		
-		$query .="LIMIT $page_first_result,$item_per_page;";
+
+		$query .= "LIMIT $page_first_result,$item_per_page;";
 		$result = mysqli_query($con, $query);
 		confirm_query($result);
 		return $result;
 	}
-	function total_searched_listings($data){
+	function total_searched_listings($data)
+	{
 		global $con;
 		$query = "SELECT listing.id AS id,`availabilty`,username,make.make AS make,car_model.model AS model,car_variant.variant AS variant,model_year,interior_color,exterior_color,transmission, fuel, sale_price, market_price,main_image,`status`,feature_state,users_listings.approval as `approval`,users_listings.priority	 as priority,visibility,description	
 					FROM `listing`,car_model,car_variant,make, users_listings 
 					WHERE listing.make_id = make.id AND listing.model_id = car_model.model_id AND listing.variant_id = car_variant.variant_id AND users_listings.listing_id = listing.id AND users_listings.approval = 'Approved' ";
-		foreach ($data as $key => $value){
-			if($key =='market_price' || $key =='max_sale_price' || $key =='min_sale_price' || $key =='pg' || $key == 'submit'){
+		foreach ($data as $key => $value) {
+			if ($key == 'market_price' || $key == 'max_sale_price' || $key == 'min_sale_price' || $key == 'pg' || $key == 'submit') {
 				continue;
 			}
 			$query .= "AND listing.$key = '$value' ";
 		}
-		if(isset($_GET['max_sale_price']) || isset($_GET['min_sale_price'])){
+		if (isset($_GET['max_sale_price']) || isset($_GET['min_sale_price'])) {
 			$price = 999999999999;
 			$min_price = 0;
-			if(isset($_GET['min_sale_price']) && !empty($_GET['min_sale_price'])){
+			if (isset($_GET['min_sale_price']) && !empty($_GET['min_sale_price'])) {
 				$min_price = $_GET['min_sale_price'];
 			}
-			if(isset($_GET['max_sale_price']) && !empty($_GET['max_sale_price'])){
+			if (isset($_GET['max_sale_price']) && !empty($_GET['max_sale_price'])) {
 				$price = $_GET['max_sale_price'];
 			}
 			$query .= "AND sale_price BETWEEN $min_price AND $price ";
 		}
-		$query .=";";
+		$query .= ";";
 		$result = mysqli_query($con, $query);
 		confirm_query($result);
 		return mysqli_num_rows($result);
 	}
-	function total_listings(){
+	function total_listings()
+	{
 		global $con;
 		$query = "SELECT * FROM `users_listings` WHERE 	approval = 'Approved'";
-		$result = mysqli_query($con,$query);
+		$result = mysqli_query($con, $query);
 		confirm_query($result);
 		return mysqli_num_rows($result);
 	}
-?>
+	function get_total_user()
+	{
+		global $con;
+		$query = "SELECT COUNT(id) AS users FROM users;";
+		$result = mysqli_query($con, $query);
+		confirm_query($result);
+		if (mysqli_num_rows($result) > 0) {
+			$count = mysqli_fetch_array($result);
+			return  $count['users'];
+		}
+	}
+	function last_week_users()
+	{
+		global $con;
+		$prev_date = date('Y-m-d', strtotime('-7 days'));
+		$current_date = date("Y-m-d");
+		$query = "SELECT COUNT(user_id) AS users FROM `user_profile` WHERE date_of_signup BETWEEN ";
+		$query .= "'$prev_date' AND ";
+		$query .= "'$current_date'";
+		$result = mysqli_query($con, $query);
+		confirm_query($result);
+		if (mysqli_num_rows($result) > 0) {
+			$count = mysqli_fetch_array($result);
+			return  $count['users'];
+		}
+	}
+	function get_percent($first, $second)
+	{
+		$value = $first / $second * 100;
+		return intval($value);
+	}
+	function get_total_listings()
+	{
+		global $con;
+		$query = "SELECT COUNT(listing.id) as COUNT FROM listing WHERE listing.availabilty =1;";
+		$result = mysqli_query($con, $query);
+		confirm_query($result);
+		if (mysqli_num_rows($result) > 0) {
+			$value = mysqli_fetch_array($result);
+			return  $value['COUNT'];
+		} else {
+			return 0;
+		}
+	}
+	function get_today_listings()
+	{
+		global $con;
+		$current_date = date("Y-m-d");
+		$query = "SELECT COUNT(listing.id) as listings FROM `listing` WHERE `date` = '$current_date' ";
+		$result = mysqli_query($con, $query);
+		confirm_query($result);
+		if (mysqli_num_rows($result) > 0) {
+			$count = mysqli_fetch_array($result);
+			return  $count['listings'];
+		}
+	}
+	function get_pending_listings_count()
+	{
+		global $con;
+		$query = "SELECT COUNT(id) as count FROM users_listings WHERE approval = 'Pending';";
+		$result = mysqli_query($con, $query);
+		confirm_query($result);
+		if (mysqli_num_rows($result) > 0) {
+			$count = mysqli_fetch_array($result);
+			return  $count['count'];
+		} else {
+			return '0';
+		}
+	}
+	function get_user_listing_count($id)
+	{
+		global $con;
+		$query = "SELECT COUNT(id) AS no FROM  users_listings WHERE user_id = $id";
+		$result = mysqli_query($con, $query);
+		confirm_query($result);
+		$no = mysqli_fetch_array($result);
+		return $no['no'];
+	}
+	function get_user_pending_listing_count($id)
+	{
+		global $con;
+		$query = "SELECT COUNT(id) AS no FROM  users_listings WHERE user_id = $id AND approval = 'Pending'";
+		$result = mysqli_query($con, $query);
+		confirm_query($result);
+		$no = mysqli_fetch_array($result);
+		return $no['no'];
+	}
+	function get_user_listing_id($id)
+	{
+		global $con;
+		$query = "SELECT listing_id as id FROM users_listings WHERE user_id = $id";
+		$result = mysqli_query($con, $query);
+		confirm_query($result);
+		if (mysqli_num_rows($result) > 0) {
+			return $result;
+		} else {
+			return false;
+		}
+	}
+
+	function get_user_package_details($id){
+		global $con;
+		$query = "SELECT package.package_listing, package.package_name AS name ";
+		$query .= "FROM `user_profile`,package 
+				WHERE user_profile.pakage = package.id AND user_profile.user_id = $id; ";
+		$result = mysqli_query($con,$query);
+		confirm_query($result);
+		if(mysqli_num_rows($result) > 0){
+			$result = mysqli_fetch_assoc($result);
+			return $result;
+		}
+	}
+	?>

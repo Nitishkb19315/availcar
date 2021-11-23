@@ -26,7 +26,7 @@
                 <h1 class="b-title-page">Vehicle Listings</h1>
                 <nav aria-label="breadcrumb">
                   <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="home.html">Home</a></li>
+                    <li class="breadcrumb-item"><a href="index.php">Home</a></li>
                     <li class="breadcrumb-item active" aria-current="page">Inventory</li>
                   </ol>
                   <!-- end breadcrumb-->
@@ -128,12 +128,12 @@
             <div class="b-filter-goods">
               <div class="row justify-content-between align-items-center">
                 <div class="b-filter-goods__wrap col-auto">
-                  <div class="b-filter-goods__select">
+                  <!-- <div class="b-filter-goods__select">
                     <select class="selectpicker" data-width="100%" title="Newest First" multiple="multiple" data-max-options="1" data-style="ui-select">
                       <option>A-Z</option>
                       <option>Z-A</option>
                     </select>
-                  </div>
+                  </div> -->
                 </div>
                 <!-- <div class="b-filter-goods__info col-auto">Showing results<strong> 1 to 10</strong> of total<strong> 145</strong></div> -->
                 <div class="btns-switch col-auto"><i class="btns-switch__item js-view-list active ic fa fa-th-list"></i><i class="btns-switch__item js-view-th ic fa fa-th"></i></div>
@@ -147,11 +147,15 @@
                 while ($row = mysqli_fetch_assoc($listings)) {
               ?>
                   <div class="b-goods-f col-12 b-goods-f_row">
-                    <div class="b-goods-f__media"><img class="b-goods-f__img img-scale_listing" src="<?php if (empty(trim($row['main_image']))) {
+                    <div class="b-goods-f__media">
+                      <img class="b-goods-f__img img-scale_listing" src="<?php if (empty(trim($row['main_image']))) {
                                                                                                         echo "assets/media/content/b-goods/300x220/1.jpg";
                                                                                                       } else {
                                                                                                         echo ("control/dashboard/uploads/listing_image/" . $row['main_image']);
-                                                                                                      } ?>" alt="foto" /><span class="b-goods-f__media-inner"><span class="b-goods-f__label bg-primary">NEW</span></span></div>
+                                                                                                      } ?>" alt="foto" />
+                      <span class="b-goods-f__media-inner"><span class="b-goods-f__label bg-primary">NEW</span></span>
+                      
+                    </div>
                     <div class="b-goods-f__main">
                       <div class="b-goods-f__descrip">
                         <div class="b-goods-f__title"><?php echo $row['make'] . " " . $row['model'] ?></div>
@@ -174,11 +178,10 @@
                         </ul>
                       </div>
                       <div class="b-goods-f__sidebar">
-                        <a class="b-goods-f__bnr" href="#">
-                          <img src="assets/media/content/b-goods/auto-check.png" alt="auto check" />
-                        </a>
+                        
                         <span class="b-goods-f__price-group"><span class="b-goods-f__price"><span class="b-goods-f__price_col">msrp:&nbsp;</span><span class="b-goods-f__price-numb">&#8377 <?php echo ($row['sale_price']) ?></span></span></span>
                         <span class="b-goods-f__old-price">&#8377 <?php echo ($row['market_price']) ?></span>
+                        <span class="b-goods-f__price-group"><a href="vehicle-details.php?id=<?php echo $row['id']?>"><span class="b-goods-f__price"><span class="b-goods-f__price-numb">Details</span></span></a></span>
                       </div>
                     </div>
                   </div>

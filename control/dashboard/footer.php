@@ -29,7 +29,6 @@
 <script src="js/vendor/scrollmagic/debug.addIndicators.min.js"></script>
 <script src="js/components.js"></script>
 <script src="js/common.js"></script>
-<script src="js/script.js"></script>
 <!-- jQuery Datatable js -->
 <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
 <!-- Bootstrap Datatable js -->
@@ -38,6 +37,8 @@
 <script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
 <!-- lightbox script -->
 <script src="lightbox/js/lightbox.js"></script>
+
+<script src="js/script.js"></script>
 </body>
 
 </html>

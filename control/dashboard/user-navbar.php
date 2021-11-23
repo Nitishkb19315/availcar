@@ -17,18 +17,18 @@
                         </button>
                     </div>
                     <div class="header__search">
-                        <form class="form-search" action="#" method="GET">
+                        <!-- <form class="form-search" action="#" method="GET">
                             <div class="form-search__container"><span class="form-search__icon-left">
                                     <svg class="icon-icon-search">
                                         <use xlink:href="#icon-search"></use>
                                     </svg></span>
                                 <input class="form-search__input" type="text" placeholder="Search..." />
                             </div>
-                        </form>
+                        </form> -->
                     </div>
                 </div>
                 <div class="header__col-right col d-flex align-items-center">
-                    <div class="header__language dropdown">
+                    <!-- <div class="header__language dropdown">
                         <button class="header__toggle-language" type="button" data-toggle="dropdown" data-tippy-content="Language" data-tippy-placement="bottom">
                             <svg class="icon-icon-language">
                                 <use xlink:href="#icon-language"></use>
@@ -52,8 +52,8 @@
                             </button>
                             <div class="lang-menu__separate"></div><a class="lang-menu__button lang-menu__button--all dropdown-menu__item" href="#" tabindex="0">Learn</a>
                         </div>
-                    </div>
-                    <div class="header__tools">
+                    </div> -->
+                    <!-- <div class="header__tools">
                         <div class="header__notes header__tools-item">
                             <a class="header__tools-toggle header__tools-toggle--message" href="#" data-tippy-content="Notifications" data-tippy-placement="bottom" data-toggle="dropdown">
                                 <svg class="icon-icon-message">
@@ -351,17 +351,17 @@
                                     </svg></a>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                     <div class="header__profile dropdown">
                         <a class="header__profile-toggle dropdown__toggle" href="#" data-toggle="dropdown">
                             <div class="header__profile-image"><span class="header__profile-image-text">MA</span>
                                 <img src="<?php if (empty(trim($user_data['profile_image']))) {
                                                 echo "img/content/humans/item-4.jpg";
                                             } else {
-                                                echo $user_data['profile_image'];
+                                                echo "./uploads/profiles/".$user_data['profile_image'];
                                             } ?>" alt="#" />
                             </div>
-                            <div class="header__profile-text"><span><?php echo $user_data['fname'] . " " . $user_data['lname'] ?></span>
+                            <div class="header__profile-text"><span><?php echo ucfirst($user_data['fname']) . " " . ucfirst($user_data['lname']) ?></span>
                             </div><span class="icon-arrow-down">
                                 <svg class="icon-icon-arrow-down">
                                     <use xlink:href="#icon-arrow-down"></use>

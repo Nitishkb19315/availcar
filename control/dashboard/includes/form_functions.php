@@ -36,10 +36,9 @@
   // ************** validation for  create user ********************
   function check_exists_user($data){
 	$field_errors = array();
-	array_pop($data);array_pop($data);array_pop($data);
 	foreach($data as $key => $value){
 		if(record_existed($key,$value)){
-			$field_errors[]= $key;
+			array_push($field_errors,$key);
 		}
 	}
 	return $field_errors;

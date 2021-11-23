@@ -51,7 +51,7 @@
 
                                     <div class="add-product">
                                         <div class="row row--md">
-                                        <div class="col-12 col-md-3 col-sm-4 form-group form-group--lg">
+                                            <div class="col-12 col-md-3 col-sm-4 form-group form-group--lg">
                                                 <label class="form-label">Username</label>
                                                 <div class="input-group input-group--append">
                                                     <select class="input js-input-select input--fluid" data-placeholder="Select User" name="user_id" id="username"  required>

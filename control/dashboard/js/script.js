@@ -1,6 +1,8 @@
 $(document).ready(function () {
     $("#table").dataTable();
     var preVal;
+
+    
     console.log("file connected");
     $(".make_items").on("focus", function () {
         preVal = $(this).text().trim();
@@ -149,6 +151,8 @@ $(document).ready(function () {
             url: "includes/change-listing-availability.php?id="+id+"&status="+status,
             
         }).done((data)=>{
+            console.log("success");
+            console.log(data);
             $(this).attr("data-availability",data.trim());
             var span = $(this).find(".fas");
             if(span.hasClass("fa-check-circle")){
@@ -158,7 +162,9 @@ $(document).ready(function () {
                 span.addClass("fa-check-circle");
                 span.removeClass("fa-times-circle");
             }
-        })
+        }).fail(function() {
+            alert( "error" );
+          })
     });
     $('.contacts #first_email').on("blur", function (){
         var value = $(this).val();

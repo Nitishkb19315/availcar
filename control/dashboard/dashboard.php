@@ -19,23 +19,23 @@
                                 <div class="widget__wrapper">
                                     <div class="widget__row">
                                         <div class="widget__left">
-                                            <h3 class="widget__title">Visits</h3>
-                                            <div class="widget__status-title text-grey">Total visits today</div>
-                                            <div class="widget__trade"><span class="widget__trade-count">4000</span><span class="trade-icon trade-icon--up">
+                                            <h3 class="widget__title">Users</h3>
+                                            <div class="widget__status-title text-grey">Total User</div>
+                                            <div class="widget__trade"><span class="widget__trade-count"><?php echo (get_total_user()); ?></span><span class="trade-icon trade-icon--up">
                                                     <svg class="icon-icon-trade-up">
                                                         <use xlink:href="#icon-trade-up"></use>
-                                                    </svg></span><span class="badge badge--sm badge--green">7%</span>
+                                                    </svg></span><span class="badge badge--sm badge--green"><?php echo get_percent(last_week_users(), get_total_user()); ?>%</span>
                                             </div>
                                             <div class="widget__details"><a class="link-under text-grey" href="#">Detail</a>
                                             </div>
                                         </div>
                                         <div class="widget__chart">
                                             <div class="widget__chart-inner">
-                                                <div class="widget__chart-percentage">50<small>%</small>
+                                                <div class="widget__chart-percentage"><?php echo get_percent(last_week_users(), get_total_user()); ?><small>%</small>
                                                 </div>
-                                                <div class="widget__chart-caption">New Visits</div>
+                                                <div class="widget__chart-caption">New users</div>
                                             </div>
-                                            <div class="widget__chart-canvas js-progress-circle" data-value="0.5" data-color="#22CCE2"></div>
+                                            <div class="widget__chart-canvas js-progress-circle" data-value="<?php echo last_week_users() / get_total_user(); ?>" data-color="#22CCE2"></div>
                                         </div>
                                     </div>
                                 </div>
@@ -46,23 +46,23 @@
                                 <div class="widget__wrapper">
                                     <div class="widget__row">
                                         <div class="widget__left">
-                                            <h3 class="widget__title">Orders</h3>
-                                            <div class="widget__status-title text-grey">Total visits today</div>
-                                            <div class="widget__trade"><span class="widget__trade-count">1000</span><span class="trade-icon trade-icon--down">
+                                            <h3 class="widget__title">Listings</h3>
+                                            <div class="widget__status-title text-grey">Total Listings</div>
+                                            <div class="widget__trade"><span class="widget__trade-count"><?php echo get_total_listings(); ?></span><span class="trade-icon trade-icon--down">
                                                     <svg class="icon-icon-trade-down">
-                                                        <use xlink:href="#icon-trade-down"></use>
-                                                    </svg></span><span class="badge badge--sm badge--red">3%</span>
+                                                        <use xlink:href="#icon-trade-up"></use>
+                                                    </svg></span><span class="badge badge--sm badge--green"><?php echo get_percent(get_today_listings(), get_total_listings()); ?>%</span>
                                             </div>
-                                            <div class="widget__details"><a class="link-under text-grey" href="#">Detail</a>
+                                            <div class="widget__details"><a class="link-under text-grey" href="./manage-listing.php">Detail</a>
                                             </div>
                                         </div>
                                         <div class="widget__chart">
                                             <div class="widget__chart-inner">
-                                                <div class="widget__chart-percentage">75<small>%</small>
+                                                <div class="widget__chart-percentage"><?php echo get_percent(get_today_listings(), get_total_listings()); ?><small>%</small>
                                                 </div>
-                                                <div class="widget__chart-caption">New Orders</div>
+                                                <div class="widget__chart-caption">New Listings</div>
                                             </div>
-                                            <div class="widget__chart-canvas js-progress-circle" data-value="0.75" data-color="#FDBF5E"></div>
+                                            <div class="widget__chart-canvas js-progress-circle" data-value="<?php echo (get_today_listings() / get_total_listings()); ?>" data-color="#FDBF5E"></div>
                                         </div>
                                     </div>
                                 </div>
@@ -73,23 +73,23 @@
                                 <div class="widget__wrapper">
                                     <div class="widget__row">
                                         <div class="widget__left">
-                                            <h3 class="widget__title">Sales</h3>
-                                            <div class="widget__status-title text-grey">Total visits today</div>
-                                            <div class="widget__trade"><span class="widget__trade-count">$500</span><span class="trade-icon trade-icon--up">
+                                            <h3 class="widget__title">Pending Listings</h3>
+                                            <div class="widget__status-title text-grey">Total pending listings</div>
+                                            <div class="widget__trade"><span class="widget__trade-count"><?php echo get_pending_listings_count(); ?></span><span class="trade-icon trade-icon--up">
                                                     <svg class="icon-icon-trade-up">
-                                                        <use xlink:href="#icon-trade-up"></use>
-                                                    </svg></span><span class="badge badge--sm badge--green">9%</span>
+                                                        <use xlink:href="#icon-trade-down"></use>
+                                                    </svg></span><span class="badge badge--sm badge--red"><?php echo get_percent(get_pending_listings_count(), get_total_listings()); ?>%</span>
                                             </div>
-                                            <div class="widget__details"><a class="link-under text-grey" href="#">Detail</a>
+                                            <div class="widget__details"><a class="link-under text-grey" href="#Pending-listing-section">Detail</a>
                                             </div>
                                         </div>
                                         <div class="widget__chart">
                                             <div class="widget__chart-inner">
-                                                <div class="widget__chart-percentage">80<small>%</small>
+                                                <div class="widget__chart-percentage"><?php echo get_percent(get_pending_listings_count(), get_total_listings()); ?><small>%</small>
                                                 </div>
-                                                <div class="widget__chart-caption">New Sales</div>
+                                                <div class="widget__chart-caption">Pending</div>
                                             </div>
-                                            <div class="widget__chart-canvas js-progress-circle" data-value="0.8" data-color="#FF3D57"></div>
+                                            <div class="widget__chart-canvas js-progress-circle" data-value="<?php echo (get_pending_listings_count() / get_total_listings()); ?>" data-color="#FF3D57"></div>
                                         </div>
                                     </div>
                                 </div>
@@ -297,7 +297,7 @@
                         </div>
                     </div>
                 </section>
-                <section class="section">
+                <!-- <section class="section">
                     <div class="section__title d-none">
                         <h2>Section</h2>
                     </div>
@@ -476,8 +476,8 @@
                             </div>
                         </div>
                     </div>
-                </section>
-                <section class="section">
+                </section> -->
+                <!-- <section class="section">
                     <div class="section__title d-none">
                         <h2>Section</h2>
                     </div>
@@ -625,7 +625,7 @@
                                         <div class="card__body">
                                             <div class="card__chart">
                                                 <div class="card__container">
-                                                    <div class="card__chart-item chart-statistics" id="statisticsBarChart" data-series="[[&quot;Mon&quot;, &quot;Tue&quot;, &quot;Wed&quot;, &quot;Thu&quot;, &quot;Fri&quot;, &quot;Sat&quot;, &quot;Sun&quot;],[23000, 62000, 79000, 86000, 90500, 39500, 64000],[42000, 49000, 39000, 100000, 67000, 59000, 45000]]"></div>
+                                                    <div class="card__chart-item chart-statistics" id="statisticsBarChart" data-series="[[&quot;Mon&quot;, &quot;Tue&quot;, &quot;Wed&quot;, &quot;Thu&quot;, &quot;Fri&quot;, &quot;Sat&quot;, &quot;Sun&quot;],[2300, 6200, 7900, 8600, 9050, 3950, 6400],[4200, 4900, 3900, 10000, 6000, 5000, 4500]]"></div>
                                                 </div>
                                             </div>
                                         </div>
@@ -634,268 +634,8 @@
                             </div>
                         </div>
                     </div>
-                </section>
-                <section class="section">
-                    <div class="section__title d-none">
-                        <h2>Section</h2>
-                    </div>
-                    <div class="row gutter-bottom-xl">
-                        <div class="col-12 col-md-6 col-lg-7 col-xl-4 d-flex">
-                            <div class="card">
-                                <div class="card__wrapper">
-                                    <div class="card__container">
-                                        <div class="card__header">
-                                            <div class="card__header-left">
-                                                <h3 class="card__header-title">Credit Card</h3>
-                                            </div>
-                                            <div class="card__tools-more">
-                                                <button class="items-more__button">
-                                                    <svg class="icon-icon-more">
-                                                        <use xlink:href="#icon-more"></use>
-                                                    </svg>
-                                                </button>
-                                                <div class="dropdown-items">
-                                                    <div class="dropdown-items__container">
-                                                        <ul class="dropdown-items__list">
-                                                            <li class="dropdown-items__item"><a class="dropdown-items__link"><span class="dropdown-items__link-icon">
-                                                                        <svg class="icon-icon-refresh">
-                                                                            <use xlink:href="#icon-refresh"></use>
-                                                                        </svg></span>Refresh</a>
-                                                            </li>
-                                                            <li class="dropdown-items__item"><a class="dropdown-items__link"><span class="dropdown-items__link-icon">
-                                                                        <svg class="icon-icon-settings">
-                                                                            <use xlink:href="#icon-settings"></use>
-                                                                        </svg></span>Settings</a>
-                                                            </li>
-                                                            <li class="dropdown-items__item"><a class="dropdown-items__link"><span class="dropdown-items__link-icon">
-                                                                        <svg class="icon-icon-download">
-                                                                            <use xlink:href="#icon-download"></use>
-                                                                        </svg></span>Download</a>
-                                                            </li>
-                                                            <li class="dropdown-items__item"><a class="dropdown-items__link"><span class="dropdown-items__link-icon">
-                                                                        <svg class="icon-icon-action">
-                                                                            <use xlink:href="#icon-action"></use>
-                                                                        </svg></span>Action</a>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="card__body">
-                                            <div class="card__credit-card">
-                                                <div class="credit-card">
-                                                    <img class="credit-card__image" src="img/content/credit-card@3x.png" alt="#" />
-                                                    <div class="credit-card__content">
-                                                        <input class="credit-card__number" type="text" value="0123   4567   8910   1112" readonly="readonly" />
-                                                        <div class="credit-card__name">Mark Anderson</div>
-                                                        <div class="credit-card__date">12/31</div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="card__footer">
-                                            <div class="card__container">
-                                                <div class="card__credit-list">
-                                                    <ul class="card-list">
-                                                        <li class="card-list__item">
-                                                            <div class="card-list__title">Card Type</div>
-                                                            <div class="card-list__value">VISA</div>
-                                                        </li>
-                                                        <li class="card-list__item">
-                                                            <div class="card-list__title">Card Holder</div>
-                                                            <div class="card-list__value">Mark Anderson</div>
-                                                        </li>
-                                                        <li class="card-list__item">
-                                                            <div class="card-list__title">Expire</div>
-                                                            <div class="card-list__value">12/31</div>
-                                                        </li>
-                                                        <li class="card-list__item">
-                                                            <div class="card-list__title">Card Number</div>
-                                                            <div class="card-list__value">0123 4567 8910 1112</div>
-                                                        </li>
-                                                        <li class="card-list__item">
-                                                            <div class="card-list__title">Balance</div>
-                                                            <div class="card-list__value">$1,000,000</div>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-12 col-md-6 col-lg-5 col-xl-4 d-flex">
-                            <div class="card">
-                                <div class="card__wrapper">
-                                    <div class="card__container">
-                                        <div class="card__header">
-                                            <div class="card__header-left">
-                                                <h3 class="card__header-title">Add New Card</h3>
-                                            </div>
-                                            <div class="card__tools-more">
-                                                <button class="items-more__button">
-                                                    <svg class="icon-icon-more">
-                                                        <use xlink:href="#icon-more"></use>
-                                                    </svg>
-                                                </button>
-                                                <div class="dropdown-items">
-                                                    <div class="dropdown-items__container">
-                                                        <ul class="dropdown-items__list">
-                                                            <li class="dropdown-items__item"><a class="dropdown-items__link"><span class="dropdown-items__link-icon">
-                                                                        <svg class="icon-icon-refresh">
-                                                                            <use xlink:href="#icon-refresh"></use>
-                                                                        </svg></span>Refresh</a>
-                                                            </li>
-                                                            <li class="dropdown-items__item"><a class="dropdown-items__link"><span class="dropdown-items__link-icon">
-                                                                        <svg class="icon-icon-settings">
-                                                                            <use xlink:href="#icon-settings"></use>
-                                                                        </svg></span>Settings</a>
-                                                            </li>
-                                                            <li class="dropdown-items__item"><a class="dropdown-items__link"><span class="dropdown-items__link-icon">
-                                                                        <svg class="icon-icon-download">
-                                                                            <use xlink:href="#icon-download"></use>
-                                                                        </svg></span>Download</a>
-                                                            </li>
-                                                            <li class="dropdown-items__item"><a class="dropdown-items__link"><span class="dropdown-items__link-icon">
-                                                                        <svg class="icon-icon-action">
-                                                                            <use xlink:href="#icon-action"></use>
-                                                                        </svg></span>Action</a>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="card__body">
-                                            <form class="add-card js-add-card-form" method="POST">
-                                                <div class="form-group">
-                                                    <label class="form-label">Name on Card</label>
-                                                    <div class="input-group">
-                                                        <input class="input" type="text" placeholder="Mark Anderson" required="required" />
-                                                    </div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label class="form-label">Card Number</label>
-                                                    <div class="input-group input-group--append">
-                                                        <input class="input js-card-number" type="text" placeholder="****   ****   ****   1234" required="required" /><span class="input-group__append"><img class="add-card__input-number-logo" src="img/content/visa-logo.png" alt="#" /></span>
-                                                    </div>
-                                                </div>
-                                                <div class="row row--sm">
-                                                    <div class="form-group col">
-                                                        <label class="form-label">Expire Date</label>
-                                                        <div class="input-group">
-                                                            <input class="input js-card-date" type="text" placeholder="12/2020" required="required" />
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group col">
-                                                        <label class="form-label">CVV Code</label>
-                                                        <div class="input-group">
-                                                            <input class="input js-card-cvv" type="text" placeholder="***" required="required" />
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="add-card__submit">
-                                                    <button class="button button--primary button--block" type="submit"><span class="button__icon button__icon--left">
-                                                            <svg class="icon-icon-plus">
-                                                                <use xlink:href="#icon-plus"></use>
-                                                            </svg></span><span class="button__text">Add Card</span>
-                                                    </button>
-                                                </div>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-12 col-md-12 col-lg-12 col-xl-4 d-flex">
-                            <div class="card">
-                                <div class="card__wrapper">
-                                    <div class="card__container">
-                                        <div class="card__header">
-                                            <div class="card__header-left">
-                                                <h3 class="card__header-title">Saved Cards</h3>
-                                            </div>
-                                            <div class="card__tools-more">
-                                                <button class="items-more__button">
-                                                    <svg class="icon-icon-more">
-                                                        <use xlink:href="#icon-more"></use>
-                                                    </svg>
-                                                </button>
-                                                <div class="dropdown-items">
-                                                    <div class="dropdown-items__container">
-                                                        <ul class="dropdown-items__list">
-                                                            <li class="dropdown-items__item"><a class="dropdown-items__link"><span class="dropdown-items__link-icon">
-                                                                        <svg class="icon-icon-refresh">
-                                                                            <use xlink:href="#icon-refresh"></use>
-                                                                        </svg></span>Refresh</a>
-                                                            </li>
-                                                            <li class="dropdown-items__item"><a class="dropdown-items__link"><span class="dropdown-items__link-icon">
-                                                                        <svg class="icon-icon-settings">
-                                                                            <use xlink:href="#icon-settings"></use>
-                                                                        </svg></span>Settings</a>
-                                                            </li>
-                                                            <li class="dropdown-items__item"><a class="dropdown-items__link"><span class="dropdown-items__link-icon">
-                                                                        <svg class="icon-icon-download">
-                                                                            <use xlink:href="#icon-download"></use>
-                                                                        </svg></span>Download</a>
-                                                            </li>
-                                                            <li class="dropdown-items__item"><a class="dropdown-items__link"><span class="dropdown-items__link-icon">
-                                                                        <svg class="icon-icon-action">
-                                                                            <use xlink:href="#icon-action"></use>
-                                                                        </svg></span>Action</a>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="card__body">
-                                            <div class="card__new-credits card__scrollbar scrollbar-thin scrollbar-visible" data-simplebar="data-simplebar">
-                                                <div class="card__container">
-                                                    <div class="card__credits-items row">
-                                                        <div class="card__credits-item col-auto">
-                                                            <div class="credit-card credit-card--light">
-                                                                <img class="credit-card__image" src="img/content/credit-visa@3x.png" alt="#" />
-                                                                <div class="credit-card__content">
-                                                                    <input class="credit-card__number" type="text" value="0123   4567   8910   1112" readonly="readonly" />
-                                                                    <div class="credit-card__name">Mark Anderson</div>
-                                                                    <div class="credit-card__date">12/31</div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="card__credits-item col-auto">
-                                                            <div class="credit-card credit-card--light">
-                                                                <img class="credit-card__image" src="img/content/credit-mastercard@3x.png" alt="#" />
-                                                                <div class="credit-card__content">
-                                                                    <input class="credit-card__number" type="text" value="0123   4567   8910   1112" readonly="readonly" />
-                                                                    <div class="credit-card__name">Mark Anderson</div>
-                                                                    <div class="credit-card__date">12/31</div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="card__footer card__footer--md">
-                                            <div class="card__container">
-                                                <div class="card__credit-button">
-                                                    <button class="button button--primary button--block" type="button"><span class="button__icon button__icon--left">
-                                                            <svg class="icon-icon-plus">
-                                                                <use xlink:href="#icon-plus"></use>
-                                                            </svg></span><span class="button__text">Add New Card</span>
-                                                    </button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
+                </section> -->
+                <!-- 99/ -->
                 <section class="section">
                     <div class="section__title d-none">
                         <h2>Section</h2>
@@ -1236,7 +976,8 @@
                         </div>
                     </div>
                 </section>
-                <section class="section">
+                <!-- pending listings  -->
+                <section class="section" id="Pending-listing-section">
                     <div class="section__title d-none">
                         <h2>Section</h2>
                     </div>
@@ -1258,18 +999,18 @@
                                                 <div class="dropdown-items">
                                                     <div class="dropdown-items__container">
                                                         <ul class="dropdown-items__list">
-                                                            <li class="dropdown-items__item"><a class="dropdown-items__link"><span class="dropdown-items__link-icon">
+                                                            <li class="dropdown-items__item"><a href="./execution/approve-all-listings.php" class="dropdown-items__link"><span class="dropdown-items__link-icon">
                                                                         <svg class="icon-icon-refresh">
                                                                             <use xlink:href="#icon-refresh"></use>
                                                                         </svg></span>Approve All</a>
                                                             </li>
-                                                            <li class="dropdown-items__item"><a class="dropdown-items__link"><span class="dropdown-items__link-icon">
+                                                            <li class="dropdown-items__item"><a href="./delete-exe/delete-panding-listings.php" class="dropdown-items__link"><span class="dropdown-items__link-icon">
                                                                         <svg class="icon-icon-settings">
                                                                             <use xlink:href="#icon-settings"></use>
                                                                         </svg></span>Delete All</a>
                                                             </li>
-                                                            
-                                                            <li class="dropdown-items__item"><a class="dropdown-items__link"><span class="dropdown-items__link-icon">
+
+                                                            <li class="dropdown-items__item"><a href="manage-listing.php" class="dropdown-items__link"><span class="dropdown-items__link-icon">
                                                                         <svg class="icon-icon-action">
                                                                             <use xlink:href="#icon-action"></use>
                                                                         </svg></span>Manage Listing</a>
@@ -1279,6 +1020,7 @@
                                                 </div>
                                             </div>
                                         </div>
+
                                         <div class="card__body">
                                             <div class="card__scrollbar card__table">
                                                 <div class="card__table-transactions scrollbar-thin scrollbar-visible" data-simplebar="data-simplebar">
@@ -1310,68 +1052,227 @@
                                                             </tr>
                                                         </thead>
                                                         <tbody>
-                                                            <?php 
-                                                                $result = get_all_pending_listings();
-                                                                if(mysqli_num_rows($result) > 0){
-                                                                    while ($row = mysqli_fetch_assoc($result)){
+                                                            <?php
+                                                            $result = get_all_pending_listings();
+                                                            if (mysqli_num_rows($result) > 0) {
+                                                                while ($row = mysqli_fetch_assoc($result)) {
                                                             ?>
-                                                            <tr class="table__row">
-                                                                <td class="table__td"><span class="text-grey"><?php echo $row['id']; ?></span>
-                                                                </td>
-                                                                <td class="table__td">
-                                                                    <div class="media-item">
-                                                                        <div class="media-item__icon color-green">
-                                                                            <div class="media-item__icon-text">PG</div>
-                                                                            <img class="media-item__thumb" src="img/content/humans/item-3.jpg" alt="#" />
-                                                                        </div>
-                                                                        <div class="media-item__right">
-                                                                            <h5 class="media-item__title"><?php echo $row['make']." ".$row['model'] ?></h5>
-                                                                        </div>
-                                                                    </div>
-                                                                </td>
-                                                                <td class="table__td"><span class="text-grey"><?php echo $row['username']?></span>
-                                                                </td>
-                                                                <td class="table__td"><span><?php echo $row['sale_price'] ?></span>
-                                                                </td>
-                                                                <td class="table__td"><span class="text-grey"><?php echo $row['make']." ".$row['model']." ".$row['variant'] ?></span>
-                                                                </td>
-                                                                <td class="table__td">
-                                                                    <div class="table__status"><span class="table__status-icon color-red"></span> <?php echo $row['approval'] ?></div>
-                                                                </td>
-                                                                <td class="table__td table__actions">
-                                                                    <div class="items-more">
-                                                                        <button class="items-more__button">
-                                                                            <svg class="icon-icon-more">
-                                                                                <use xlink:href="#icon-more"></use>
-                                                                            </svg>
-                                                                        </button>
-                                                                        <div class="dropdown-items dropdown-items--right">
-                                                                            <div class="dropdown-items__container">
-                                                                                <ul class="dropdown-items__list">
-                                                                                    <li class="dropdown-items__item"><a class="dropdown-items__link"><span class="dropdown-items__link-icon">
-                                                                                                <svg class="icon-icon-view">
-                                                                                                    <use xlink:href="#icon-view"></use>
-                                                                                                </svg></span>Details</a>
-                                                                                    </li>
-                                                                                    <li class="dropdown-items__item"><a class="dropdown-items__link" href="execution/listing-approval.php?id=<?php echo $row['id']?>"><span class="dropdown-items__link-icon">
-                                                                                                <svg class="icon-icon-duplicate">
-                                                                                                    <use xlink:href="#icon-duplicate"></use>
-                                                                                                </svg></span>Activate</a>
-                                                                                    </li>
-                                                                                    <li class="dropdown-items__item"><a class="dropdown-items__link" href="./delete-exe/delete-listing.php?id=<?php echo $row['id']?>"><span class="dropdown-items__link-icon">
-                                                                                                <svg class="icon-icon-trash">
-                                                                                                    <use xlink:href="#icon-trash"></use>
-                                                                                                </svg></span>Delete</a>
-                                                                                    </li>
-                                                                                </ul>
+                                                                    <tr class="table__row">
+                                                                        <td class="table__td"><span class="text-grey">#<?php echo $row['id']; ?></span>
+                                                                        </td>
+                                                                        <td class="table__td">
+                                                                            <div class="media-item">
+                                                                                <div class="media-item__icon color-green">
+                                                                                    <div class="media-item__icon-text">PG</div>
+                                                                                    <img class="media-item__thumb" src="img/content/humans/item-3.jpg" alt="#" />
+                                                                                </div>
+                                                                                <div class="media-item__right">
+                                                                                    <h5 class="media-item__title"><?php echo $row['make'] . " " . $row['model'] ?></h5>
+                                                                                </div>
                                                                             </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </td>
-                                                            </tr>
-                                                            <?php 
-                                                                    }
+                                                                        </td>
+                                                                        <td class="table__td"><span class="text-grey"><?php echo $row['username'] ?></span>
+                                                                        </td>
+                                                                        <td class="table__td"><span><?php echo $row['sale_price'] ?></span>
+                                                                        </td>
+                                                                        <td class="table__td"><span class="text-grey"><?php echo $row['make'] . " " . $row['model'] . " " . $row['variant'] ?></span>
+                                                                        </td>
+                                                                        <td class="table__td">
+                                                                            <div class="table__status"><span class="table__status-icon color-red"></span> <?php echo $row['approval'] ?></div>
+                                                                        </td>
+                                                                        <td class="table__td table__actions">
+                                                                            <div class="items-more">
+                                                                                <button class="items-more__button">
+                                                                                    <svg class="icon-icon-more">
+                                                                                        <use xlink:href="#icon-more"></use>
+                                                                                    </svg>
+                                                                                </button>
+                                                                                <div class="dropdown-items dropdown-items--right">
+                                                                                    <div class="dropdown-items__container">
+                                                                                        <ul class="dropdown-items__list">
+                                                                                            <li class="dropdown-items__item"><a class="dropdown-items__link"><span class="dropdown-items__link-icon">
+                                                                                                        <svg class="icon-icon-view">
+                                                                                                            <use xlink:href="#icon-view"></use>
+                                                                                                        </svg></span>Details</a>
+                                                                                            </li>
+                                                                                            <li class="dropdown-items__item"><a class="dropdown-items__link" href="execution/listing-approval.php?id=<?php echo $row['id'] ?>"><span class="dropdown-items__link-icon">
+                                                                                                        <svg class="icon-icon-duplicate">
+                                                                                                            <use xlink:href="#icon-duplicate"></use>
+                                                                                                        </svg></span>Approve</a>
+                                                                                            </li>
+                                                                                            <li class="dropdown-items__item"><a class="dropdown-items__link" href="./delete-exe/delete-listing.php?id=<?php echo $row['id'] ?>"><span class="dropdown-items__link-icon">
+                                                                                                        <svg class="icon-icon-trash">
+                                                                                                            <use xlink:href="#icon-trash"></use>
+                                                                                                        </svg></span>Delete</a>
+                                                                                            </li>
+                                                                                        </ul>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </td>
+                                                                    </tr>
+                                                            <?php
                                                                 }
+                                                            }
+                                                            ?>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!-- pending users  -->
+                <section class="section" id="Pending-listing-section">
+                    <div class="section__title d-none">
+                        <h2>Section</h2>
+                    </div>
+                    <div class="row gutter-bottom-xl">
+                        <div class="col-12 d-flex">
+                            <div class="card pb-0">
+                                <div class="card__wrapper">
+                                    <div class="card__container">
+                                        <div class="card__header">
+                                            <div class="card__header-left">
+                                                <h3 class="card__header-title">Pending Users</h3>
+                                            </div>
+                                            <div class="card__tools-more">
+                                                <button class="items-more__button">
+                                                    <svg class="icon-icon-more">
+                                                        <use xlink:href="#icon-more"></use>
+                                                    </svg>
+                                                </button>
+                                                <div class="dropdown-items">
+                                                    <div class="dropdown-items__container">
+                                                        <ul class="dropdown-items__list">
+                                                            <li class="dropdown-items__item"><a class="dropdown-items__link" href="./execution/approve-all-user-exe.php"><span class="dropdown-items__link-icon">
+                                                                        <svg class="icon-icon-refresh">
+                                                                            <use xlink:href="#icon-refresh"></use>
+                                                                        </svg></span>Activate All</a>
+                                                            </li>
+                                                            <li class="dropdown-items__item"><a class="dropdown-items__link"><span class="dropdown-items__link-icon">
+                                                                        <svg class="icon-icon-settings">
+                                                                            <use xlink:href="#icon-settings"></use>
+                                                                        </svg></span>Delete All</a>
+                                                            </li>
+
+                                                            <li class="dropdown-items__item"><a class="dropdown-items__link" href="./manage-users.php"><span class="dropdown-items__link-icon">
+                                                                        <svg class="icon-icon-action">
+                                                                            <use xlink:href="#icon-action"></use>
+                                                                        </svg></span>Manage Users</a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="card__body">
+                                            <div class="card__scrollbar card__table">
+                                                <div class="card__table-transactions  scrollbar-thin scrollbar-visible" data-simplebar="data-simplebar">
+                                                    <table class="table table--lines table--striped">
+                                                        <colgroup>
+                                                            <col class="colgroup-1" />
+                                                            <col class="colgroup-2" />
+                                                            <col class="colgroup-3" />
+                                                            <col class="colgroup-4" />
+                                                            <col class="colgroup-5" />
+                                                            <col class="colgroup-6" />
+                                                            <col />
+                                                        </colgroup>
+                                                        <thead class="table__header table__header--sticky">
+                                                            <tr>
+                                                                <th><span class="text-nowrap">User Id.</span>
+                                                                </th>
+                                                                <th><span>User</span>
+                                                                </th>
+                                                                <th><span>username</span>
+                                                                </th>
+                                                                <th><span>Mobile No</span>
+                                                                </th>
+                                                                <th><span>Location</span>
+                                                                </th>
+                                                                <th><span>STATUS</span>
+                                                                </th>
+                                                                <th class="table__actions"></th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <?php
+                                                            $result = get_pending_user_list();
+                                                            if (mysqli_num_rows($result) > 0) {
+                                                                while ($row = mysqli_fetch_assoc($result)) {
+                                                            ?>
+                                                                    <tr class="table__row">
+                                                                        <td class="table__td"><span class="text-grey">#<?php echo $row['id']; ?></span>
+                                                                        </td>
+                                                                        <td class="table__td">
+                                                                            <div class="media-item">
+                                                                                <div class="media-item__icon color-green">
+                                                                                    <div class="media-item__icon-text">PG</div>
+                                                                                    <img class="media-item__thumb" src="<?php if (empty(trim($row['profile_image']))) {
+                                                                                                                            echo 'img/content/humans/item-3.jpg';
+                                                                                                                        } else {
+                                                                                                                            echo './uploads/profiles/' . $row['profile_image'];
+                                                                                                                        } ?>" alt="#" />
+                                                                                </div>
+                                                                                <div class="media-item__right">
+                                                                                    <h5 class="media-item__title"><?php echo $row['fname'] . " " . $row['lname']; ?></h5>
+                                                                                    <a class="text-sm text-grey" href="mailto:<?php echo $row['email'] ?>"><?php echo $row['email'] ?></a>
+                                                                                </div>
+                                                                            </div>
+                                                                        </td>
+                                                                        <td class="table__td"><span class="text-grey"><?php echo $row['username'] ?></span>
+                                                                        </td>
+                                                                        <td class="table__td"><span> <a href="tel:<?php echo $row['mobile_no'] ?>"> <?php echo $row['mobile_no'] ?> </a></span>
+                                                                        </td>
+                                                                        <td class="table__td"><span class="text-grey"><?php echo $row['address'] . ", " . $row['city'] . ", " . $row['country'] ?></span>
+                                                                        </td>
+                                                                        <td class="table__td">
+                                                                            <div class="table__status"><span class="table__status-icon color-red"></span>Deactivate</div>
+                                                                        </td>
+                                                                        <td class="table__td table__actions">
+                                                                            <div class="items-more">
+                                                                                <button class="items-more__button">
+                                                                                    <svg class="icon-icon-more">
+                                                                                        <use xlink:href="#icon-more"></use>
+                                                                                    </svg>
+                                                                                </button>
+                                                                                <div class="dropdown-items dropdown-items--right">
+                                                                                    <div class="dropdown-items__container">
+                                                                                        <ul class="dropdown-items__list">
+                                                                                            <li class="dropdown-items__item"><a class="dropdown-items__link" href="./execution/activate-user-exe.php?id=<?php echo $row['id']; ?>"><span class="dropdown-items__link-icon">
+                                                                                                        <svg class="icon-icon-duplicate">
+                                                                                                            <use xlink:href="#icon-duplicate"></use>
+                                                                                                        </svg></span><?php if ($row['account_status'] == 1) {
+                                                                                                                            echo 'Deactivate';
+                                                                                                                        } else {
+                                                                                                                            echo 'Activate';
+                                                                                                                        } ?></a>
+                                                                                            </li>
+                                                                                            <li class="dropdown-items__item"><a class="dropdown-items__link" href="./user-profile.php?id=<?php echo $row['id']; ?>"><span class="dropdown-items__link-icon">
+                                                                                                        <svg class="icon-icon-user">
+                                                                                                            <use xlink:href="#icon-user"></use>
+                                                                                                        </svg></span>User Profile</a>
+                                                                                            </li>
+                                                                                            <li class="dropdown-items__item"><a class="dropdown-items__link" href="./delete-exe/delete-user.php?id=<?php echo $row['id'] ?>"><span class="dropdown-items__link-icon">
+                                                                                                        <svg class="icon-icon-trash">
+                                                                                                            <use xlink:href="#icon-trash"></use>
+                                                                                                        </svg></span>Delete</a>
+                                                                                            </li>
+                                                                                        </ul>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </td>
+                                                                    </tr>
+                                                            <?php
+                                                                }
+                                                            }
                                                             ?>
                                                         </tbody>
                                                     </table>
@@ -1389,13 +1290,13 @@
                         <h2>Section</h2>
                     </div>
                     <div class="row gutter-bottom-xl">
-                        <div class="col-12 col-lg-6 col-xl-8 d-flex">
+                        <div class="col-12 col-md-6 col-xl-4 d-flex">
                             <div class="card pb-0">
                                 <div class="card__wrapper">
                                     <div class="card__container">
                                         <div class="card__header">
                                             <div class="card__header-left">
-                                                <h3 class="card__header-title">Sales by country</h3>
+                                                <h3 class="card__header-title">Calendar</h3>
                                             </div>
                                             <div class="card__tools-more">
                                                 <button class="items-more__button">
@@ -1432,66 +1333,27 @@
                                             </div>
                                         </div>
                                         <div class="card__body">
-                                            <div class="card-country card__table card__scrollbar">
-                                                <div class="card-country__map" id="mapCountry"></div>
-                                                <div class="card-country__items scrollbar-thin scrollbar-visible" data-simplebar="data-simplebar">
-                                                    <table class="table table--lines">
-                                                        <colgroup>
-                                                            <col class="colgroup-1" />
-                                                            <col class="colgroup-2" />
-                                                            <col />
-                                                        </colgroup>
-                                                        <tbody>
-                                                            <tr class="table__row">
-                                                                <td class="table__td text-nowrap">
-                                                                    <img class="card-country__flag" src="img/content/flags/au.svg" alt="#" /><span class="card-country__name">Australia</span>
-                                                                </td>
-                                                                <td class="table__td text-nowrap"><span class="card-country__sales">Sales: <span class="font-weight-medium">25,000</span></span><span class="quotation quotation--up">
-                                                                        <svg class="icon-icon-arrow-down">
-                                                                            <use xlink:href="#icon-arrow-down"></use>
-                                                                        </svg></span>
-                                                                </td>
-                                                                <td class="table__td"><span class="text-grey">40%</span>
-                                                                </td>
-                                                            </tr>
-                                                            <tr class="table__row">
-                                                                <td class="table__td text-nowrap">
-                                                                    <img class="card-country__flag" src="img/content/flags/ru.svg" alt="#" /><span class="card-country__name">Russia</span>
-                                                                </td>
-                                                                <td class="table__td text-nowrap"><span class="card-country__sales">Sales: <span class="font-weight-medium">10,000</span></span><span class="quotation quotation--up">
-                                                                        <svg class="icon-icon-arrow-down">
-                                                                            <use xlink:href="#icon-arrow-down"></use>
-                                                                        </svg></span>
-                                                                </td>
-                                                                <td class="table__td"><span class="text-grey">20%</span>
-                                                                </td>
-                                                            </tr>
-                                                            <tr class="table__row">
-                                                                <td class="table__td text-nowrap">
-                                                                    <img class="card-country__flag" src="img/content/flags/us.svg" alt="#" /><span class="card-country__name">United States</span>
-                                                                </td>
-                                                                <td class="table__td text-nowrap"><span class="card-country__sales">Sales: <span class="font-weight-medium">5,000</span></span><span class="quotation quotation--down">
-                                                                        <svg class="icon-icon-arrow-down">
-                                                                            <use xlink:href="#icon-arrow-down"></use>
-                                                                        </svg></span>
-                                                                </td>
-                                                                <td class="table__td"><span class="text-grey">15%</span>
-                                                                </td>
-                                                            </tr>
-                                                            <tr class="table__row">
-                                                                <td class="table__td text-nowrap">
-                                                                    <img class="card-country__flag" src="img/content/flags/cn.svg" alt="#" /><span class="card-country__name">China</span>
-                                                                </td>
-                                                                <td class="table__td text-nowrap"><span class="card-country__sales">Sales: <span class="font-weight-medium">2,000</span></span><span class="quotation quotation--down">
-                                                                        <svg class="icon-icon-arrow-down">
-                                                                            <use xlink:href="#icon-arrow-down"></use>
-                                                                        </svg></span>
-                                                                </td>
-                                                                <td class="table__td"><span class="text-grey">10%</span>
-                                                                </td>
-                                                            </tr>
-                                                        </tbody>
-                                                    </table>
+                                            <div class="calendar-inline" id="calendarOne">
+                                                <div class="js-calendar-inline"></div>
+                                            </div>
+                                        </div>
+                                        <div class="card__footer card__footer--md">
+                                            <div class="card__container">
+                                                <div class="calendar-widget" data-calendar="#calendarOne">
+                                                    <div class="calendar-widget__row">
+                                                        <div class="calendar-widget__item calendar-widget__item--left">
+                                                            <div class="calendar-widget__day"><span class="calendar-widget__dateday">13</span><sup class="calendar-widget__weekday text-grey">TH</sup>
+                                                            </div>
+                                                            <div class="calendar-widget__month text-grey">December</div>
+                                                        </div>
+                                                        <div class="calendar-widget__item">
+                                                            <div class="calendar-widget__status"><span class="circle color-green"></span><span>Upcoming</span>
+                                                            </div>
+                                                            <div class="calendar-widget__order text-grey">
+                                                                Order Delivery 04:30 PM
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -1499,7 +1361,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-12 col-lg-6 col-xl-4 d-flex">
+                        <div class="col-12 col-lg-6 col-xl-6 d-flex">
                             <div class="card card--right pb-0">
                                 <div class="card__wrapper">
                                     <div class="card__container">
@@ -1607,84 +1469,6 @@
                                                                 <div class="review-list__message">
                                                                     <p class="review-list__text">At vero eos accusamus as iusto odio dignissimos provis ducimus, consectetur adipiscing elit, piscings obcaecati cupiditate nonpiscing provident fuga.</p>
                                                                 </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-                <section class="section">
-                    <div class="section__title d-none">
-                        <h2>Section</h2>
-                    </div>
-                    <div class="row gutter-bottom-xl">
-                        <div class="col-12 col-md-6 col-xl-4 d-flex">
-                            <div class="card pb-0">
-                                <div class="card__wrapper">
-                                    <div class="card__container">
-                                        <div class="card__header">
-                                            <div class="card__header-left">
-                                                <h3 class="card__header-title">Calendar</h3>
-                                            </div>
-                                            <div class="card__tools-more">
-                                                <button class="items-more__button">
-                                                    <svg class="icon-icon-more">
-                                                        <use xlink:href="#icon-more"></use>
-                                                    </svg>
-                                                </button>
-                                                <div class="dropdown-items">
-                                                    <div class="dropdown-items__container">
-                                                        <ul class="dropdown-items__list">
-                                                            <li class="dropdown-items__item"><a class="dropdown-items__link"><span class="dropdown-items__link-icon">
-                                                                        <svg class="icon-icon-refresh">
-                                                                            <use xlink:href="#icon-refresh"></use>
-                                                                        </svg></span>Refresh</a>
-                                                            </li>
-                                                            <li class="dropdown-items__item"><a class="dropdown-items__link"><span class="dropdown-items__link-icon">
-                                                                        <svg class="icon-icon-settings">
-                                                                            <use xlink:href="#icon-settings"></use>
-                                                                        </svg></span>Settings</a>
-                                                            </li>
-                                                            <li class="dropdown-items__item"><a class="dropdown-items__link"><span class="dropdown-items__link-icon">
-                                                                        <svg class="icon-icon-download">
-                                                                            <use xlink:href="#icon-download"></use>
-                                                                        </svg></span>Download</a>
-                                                            </li>
-                                                            <li class="dropdown-items__item"><a class="dropdown-items__link"><span class="dropdown-items__link-icon">
-                                                                        <svg class="icon-icon-action">
-                                                                            <use xlink:href="#icon-action"></use>
-                                                                        </svg></span>Action</a>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="card__body">
-                                            <div class="calendar-inline" id="calendarOne">
-                                                <div class="js-calendar-inline"></div>
-                                            </div>
-                                        </div>
-                                        <div class="card__footer card__footer--md">
-                                            <div class="card__container">
-                                                <div class="calendar-widget" data-calendar="#calendarOne">
-                                                    <div class="calendar-widget__row">
-                                                        <div class="calendar-widget__item calendar-widget__item--left">
-                                                            <div class="calendar-widget__day"><span class="calendar-widget__dateday">13</span><sup class="calendar-widget__weekday text-grey">TH</sup>
-                                                            </div>
-                                                            <div class="calendar-widget__month text-grey">December</div>
-                                                        </div>
-                                                        <div class="calendar-widget__item">
-                                                            <div class="calendar-widget__status"><span class="circle color-green"></span><span>Upcoming</span>
-                                                            </div>
-                                                            <div class="calendar-widget__order text-grey">
-                                                                Order Delivery 04:30 PM
                                                             </div>
                                                         </div>
                                                     </div>

@@ -6,10 +6,10 @@ if(isset($_GET['id'])&&!empty($_GET['id'])){
     if(strtolower($status)=="pending"){
         $status = "Approved";
         if(change_listing_approval_status($_GET['id'],$status)){
-            header("Location: " . $_SERVER["HTTP_REFERER"]."&er=19");
+            header("Location: " . $_SERVER["HTTP_REFERER"]."?er=19");
         }
     }else{
-        header("Location: " . $_SERVER["HTTP_REFERER"]."&er=20");
+        header("Location: " . $_SERVER["HTTP_REFERER"]."?er=20");
     }
 }
 ?>

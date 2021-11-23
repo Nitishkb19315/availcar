@@ -175,38 +175,23 @@
                   <section class="section-reviews-2">
                     <h2 class="ui-title-inner">What Customers<span class="text-primary"> Say</span></h2>
                     <div class="b-reviews-slider-2 js-slider" data-slick="{&quot;arrows&quot;: false, &quot;dots&quot;: true}">
+                      <?php
+                      $reviews = get_review_list();
+                      if (mysqli_num_rows($reviews) > 0) {
+                          while ($row = mysqli_fetch_assoc($reviews)) {
+                      ?>
                       <div class="b-reviews-2">
                         <blockquote class="b-reviews-2__blockquote">
                           <div class="b-reviews-2__wrap bg-light">
-                            <p>Norem ipsum dolor sit amet consectetur adipisicing elit aliqu uat enim ad minim veniam, quis nostrud exercita Duis aute irure dolor reprehenderit babbled much partook this much sed ipsum in thus the saucy.</p>
+                            <p><?php echo($row['review']) ?></p>
                           </div>
-                          <cite class="b-reviews-2__cite" title="Blockquote Title"><span class="b-reviews-2__name">Tina Olivia</span><span class="b-reviews-2__category">BMW 7 Series owner</span></cite>
+                          <cite class="b-reviews-2__cite" title="Blockquote Title"><span class="b-reviews-2__name"><?php echo($row['name']) ?></span><span class="b-reviews-2__category"><?php echo($row['type']) ?></span></cite>
                         </blockquote>
                       </div>
-                      <div class="b-reviews-2">
-                        <blockquote class="b-reviews-2__blockquote">
-                          <div class="b-reviews-2__wrap bg-light">
-                            <p>Norem ipsum dolor sit amet consectetur adipisicing elit aliqu uat enim ad minim veniam, quis nostrud exercita Duis aute irure dolor reprehenderit babbled much partook this much sed ipsum in thus the saucy.</p>
-                          </div>
-                          <cite class="b-reviews-2__cite" title="Blockquote Title"><span class="b-reviews-2__name">Tina Olivia</span><span class="b-reviews-2__category">BMW 7 Series owner</span></cite>
-                        </blockquote>
-                      </div>
-                      <div class="b-reviews-2">
-                        <blockquote class="b-reviews-2__blockquote">
-                          <div class="b-reviews-2__wrap bg-light">
-                            <p>Norem ipsum dolor sit amet consectetur adipisicing elit aliqu uat enim ad minim veniam, quis nostrud exercita Duis aute irure dolor reprehenderit babbled much partook this much sed ipsum in thus the saucy.</p>
-                          </div>
-                          <cite class="b-reviews-2__cite" title="Blockquote Title"><span class="b-reviews-2__name">Tina Olivia</span><span class="b-reviews-2__category">BMW 7 Series owner</span></cite>
-                        </blockquote>
-                      </div>
-                      <div class="b-reviews-2">
-                        <blockquote class="b-reviews-2__blockquote">
-                          <div class="b-reviews-2__wrap bg-light">
-                            <p>Norem ipsum dolor sit amet consectetur adipisicing elit aliqu uat enim ad minim veniam, quis nostrud exercita Duis aute irure dolor reprehenderit babbled much partook this much sed ipsum in thus the saucy.</p>
-                          </div>
-                          <cite class="b-reviews-2__cite" title="Blockquote Title"><span class="b-reviews-2__name">Tina Olivia</span><span class="b-reviews-2__category">BMW 7 Series owner</span></cite>
-                        </blockquote>
-                      </div>
+                      <?php
+                          }
+                      }
+                      ?>
                     </div>
                   </section>
                   <!-- end .b-reviews-->

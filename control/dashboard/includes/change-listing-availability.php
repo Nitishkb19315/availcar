@@ -2,6 +2,6 @@
 <?php require_once("../includes/functions.php"); ?>
 <?php 
 if(isset($_GET['id']) && !empty($_GET['id'])){
-    echo(change_listing_state($_GET['id'],$_GET['status'],"availability"));
+    echo(change_listing_state($_GET['id'],$_GET['status'],"availabilty"));
 }
 ?>
